@@ -1,0 +1,38 @@
+---
+title: "sz-datenanalyse"
+author: "My Name"
+date: "July 2022"
+output:
+  html_document:
+    code_folding: show
+    df_print: kable
+    toc: yes
+    toc_depth: 4
+    toc_float: 
+      collapsed: false
+      smooth_scroll: false
+---
+
+### Load packages
+
+```{r echo=F, message=F, warning=F}
+library(needs) # or: install.packages('needs')
+needs(tidyverse, sf, DatawRappr)
+```
+
+### Load additional scripts
+
+## Linting
+
+The code in this RMarkdown is linted with the [lintr package](https://github.com/jimhester/lintr), which is based on the  [tidyverse style guide](http://style.tidyverse.org/). 
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+lintr::lint("main.Rmd", linters =
+              lintr::with_defaults(
+                commented_code_linter = NULL,
+                trailing_whitespace_linter = NULL
+                )
+            )
+# if you have additional scripts and want them to be linted too, add them here
+# lintr::lint("scripts/my_script.R")
+```
