@@ -1,0 +1,1 @@
+# Funktionen, um Daten aus Party Check aufzubereiten und zu analysieren
