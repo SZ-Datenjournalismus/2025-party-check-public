@@ -13,5 +13,12 @@ library(pacman)
 p_load(
   tidyverse, # Datenmanipulation
   lubridate, # Umgang mit Datumsformaten
-  here # Pfadmanagement
+  here, # Pfadmanagement
+  eurostat, # Eurostat Zensus Daten
+  data.table, # Datenmanipulation
+  questionr, # Umfragen und Fragebögen
+  survey # Umfragen und Fragebögen
 )
+
+# Hilfsfunktionen laden ####
+source(here("scripts", "party_check_functions.R"))
