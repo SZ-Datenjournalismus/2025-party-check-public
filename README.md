@@ -37,6 +37,8 @@ Die hier angebotenen Skripte sind in R geschrieben. Um sie auszuführen, müsst 
 
 -   `weight_data.R`: In diesem Skript werden die Rohdaten beispielhaft gewichtet.
 
+-   `calculate_quota_sample.R`: Hier wird eine Stichprobe (n = 2000) aus dem Gesamtdatensatz gezogen, der die Bevölkerungsstruktur nach Alter, Geschlecht, Bildung und Region besser abbildet.
+
 -   `example_analysis.R`: Beispielanalyse von Daten aus Party Check. `config.R` und `party_check_functions.R` werden in diesem Skript bereits geladen.
 
 ### Ordnerstruktur
