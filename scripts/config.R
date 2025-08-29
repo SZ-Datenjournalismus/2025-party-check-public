@@ -17,7 +17,9 @@ p_load(
   eurostat, # Eurostat Zensus Daten
   data.table, # Datenmanipulation
   questionr, # Umfragen und Fragebögen
-  survey # Umfragen und Fragebögen
+  survey, # Umfragen und Fragebögen
+  roxygen2, # Dokumentation von Funktionen
+  spatstat.geom # Statistiken mit Gewichtungen
 )
 
 # Hilfsfunktionen laden ####
