@@ -9,6 +9,11 @@ if (!requireNamespace("pacman", quietly = TRUE)) {
 
 library(pacman)
 
+## DatawRappr von github installieren, falls noch nicht vorhanden ####
+if (!requireNamespace("DatawRappr", quietly = TRUE)) {
+  pacman::p_install_gh("munichrocker/DatawRappr")
+}
+
 ## alle anderen benötigten Pakete mit pacman laden ####
 p_load(
   tidyverse, # Datenmanipulation
@@ -19,7 +24,8 @@ p_load(
   questionr, # Umfragen und Fragebögen
   survey, # Umfragen und Fragebögen
   roxygen2, # Dokumentation von Funktionen
-  spatstat.geom # Statistiken mit Gewichtungen
+  spatstat.geom, # Statistiken mit Gewichtungen
+  DatawRappr # Visualisierung in Datawrapper
 )
 
 # Hilfsfunktionen laden ####

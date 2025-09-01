@@ -9,6 +9,10 @@ source(here("scripts", "weight_data.R"))
 # annähernd repräsentative Stichprobe mit 2000 User:innen aus dem Party Check Datensatz ziehen ####
 source(here("scripts", "calculate_quota_sample.R"))
 
+# Codebook laden ####
+# Vorsicht, Codebook wurde mit Hilfe von KI erstellt und nicht vollständig geprüft!
+eupc_codebook <- read_csv(here("input", "codebook_eu_party_check.csv"))
+
 # Daten für die Analyse vorbereiten ####
 # Daten werden hier in weight_data.R geladen und vorbereitet
 # hier nur ein Auszug aus den verfügbaren Items
@@ -16,7 +20,7 @@ items <- c(
   "lrgen",                # generelle politische Orientierung
   "econinterven",         # Sollte der Staat in die Wirtschaft eingreifen?
   "environment",          # Umwelt- und Klimaschutz vor Wirtschaft?
-  "protectionsism",       # Freihandel oder Protektionismus?
+  "protectionism",       # Freihandel oder Protektionismus?
   "redistribution",       # Soll der Staat umverteilen?
   "eucohesion",           # Soll die EU mehr Geld für ärmere Regionen ausgeben?
   "euenlargement",        # Soll die EU weiter wachsen?
@@ -31,8 +35,6 @@ items <- c(
 )
 
 sociodemography <- c(
-  "recall",               # gewählte Partei (Zweitstimme) bei der Bundestagswahl 2021
-  "votinteu",             # Wahlabsicht (Partei) bei der Europawahl 2024
   "gender",               # Geschlecht
   "bundesland",           # Bundesland
   "age",                  # Alter
@@ -40,6 +42,7 @@ sociodemography <- c(
   "university",           # Hochschulbildung (1=ja, 2=nein)
   "recall",               # gewählte Partei (Zweitstimme) bei der Bundestagswahl 2021
   "recallland",           # gewählte Partei (Zweitstimme) bei der Landtagswahl 2019, nur für Befragte in Brandenburg, Thüringen und Sachsen
+  "recallland_other",     # andere Partei bei der Landtagswahl 2019, nur für Befragte in Brandenburg, Thüringen und Sachsen
   "votinteu",             # Wahlabsicht (Partei) bei der Europawahl 2024
   "votint",               # Wahlabsicht (Partei) bei der Bundestagswahl 2025
   "urbanrurallive",       # Selbsteinschätzung der Größe des Wohnorts
@@ -52,39 +55,64 @@ party_proxy_items <- c( # Frage nach der Wahrscheinlichkeit, in Zukunft die Part
 
 # Daten in langes Format bringen
 pc_data_long <- pc_data_final %>%
-  pivot_longer(cols = -c(all_of(c("id", "startdate", "datestamp", sociodemography, names(party_proxy_items), "w"))),
+  pivot_longer(cols = -c(all_of(c("id", "startdate", "datestamp", sociodemography, party_proxy_items, "w"))),
                names_to = "item",
                values_to = "value",
                values_transform = list(value = as.character))
 
-# Geschlecht, Bundesland und Alter umcodieren
-pc_data_long <- pc_data_long %>%
-  mutate(gender = case_when(gender == 1 ~ "male",
-                            gender == 2 ~ "female",
-                            gender == 3 ~ "diverse",
-                            gender == 4 ~ "other"),
-         bundesland = recode(bundesland, !!!bundesland_mapping, .default = NA_character_),
-         age = case_when(
-           age == 98 ~ "< 16",
-           age == 1 ~ "16-17",
-           age == 2 ~ "18-20",
-           age == 3 ~ "21-24",
-           age == 4 ~ "25-29",
-           age == 5 ~ "30-34",
-           age == 6 ~ "35-39",
-           age == 7 ~ "40-44",
-           age == 8 ~ "45-49",
-           age == 9 ~ "50-54",
-           age == 10 ~ "55-59",
-           age == 11 ~ "60-64",
-           age == 12 ~ "65-69",
-           age == 13 ~ "70-74",
-           age == 14 ~ "75-79",
-           age == 15 ~ "> 80"
-         ))
+# Geschlecht, Bundesland, Alter etc. umcodieren
+# sociodemography ohne recallland_other und socself
+for (item in setdiff(sociodemography, c("recallland_other", "socself"))) {
+  if (item %in% names(pc_data_long)) {
+    pc_data_long <- pc_data_long %>%
+      recode_with_codebook(item, eupc_codebook)
+  }
+}
 
 # Statistische Kennzahlen für ausgewählte Items und soziodemographische Gruppen berechnen ####
 pc_stats_df <- calculate_pc_stats(df = pc_data_long,
                                   items_list = items, 
                                   sociodemography_list = c("gender", "bundesland", "age"), 
                                   with_weights = TRUE)
+
+# nach Parteipräferenz (Wahlabsicht 2025)
+calculate_pc_stats(pc_data_long,
+                   items_list = c("lrgen", "econinterven", "immigratepolicy", "environment", "protectionism"),
+                   sociodemography_list = c("votint"),
+                   with_weights = TRUE) %>%
+  view()
+# nach Parteipräferenz (Wahlabsicht 2025) und Wahlentscheidung BTW21
+calculate_pc_stats(pc_data_long,
+                   items_list = c("lrgen", "econinterven", "immigratepolicy", "environment", "protectionism"),
+                   sociodemography_list = c("votint", "recall"),
+                   with_weights = TRUE) %>%
+  filter(n >= 20) %>%
+  view()
+# nach Alter und Parteipräferenz (Wahlabsicht 2025)
+calculate_pc_stats(pc_data_long,
+                   items_list = c("lrgen", "econinterven", "immigratepolicy", "environment", "protectionism"),
+                   sociodemography_list = c("age", "votint"),
+                   with_weights = TRUE) %>%
+  view()
+
+# nach Alter (grob jung und alt) und Parteipräferenz (Wahlabsicht 2025)
+calculate_pc_stats(pc_data_long %>%
+                     mutate(age = case_when(age %in% (eupc_codebook %>% filter(item == "age") %>% mutate(value = as.integer(value)) %>% filter(value < 5 | value == 98) %>% pull(text)) ~ "unter 30 Jahre",
+                                            age %in% (eupc_codebook %>% filter(item == "age") %>% mutate(value = as.integer(value)) %>% filter(value > 10, value < 98) %>% pull(text)) ~ "über 60 Jahre",
+                                            age %in% (eupc_codebook %>% filter(item == "age") %>% mutate(value = as.integer(value)) %>% filter(value %in% 5:10) %>% pull(text)) ~ "30 bis 59 Jahre")),
+                   items_list = c("lrgen", "econinterven", "immigratepolicy", "environment", "protectionism"),
+                   sociodemography_list = c("age", "votint"),
+                   with_weights = TRUE) %>%
+  arrange(item, factor(age, levels = c("unter 30 Jahre", "30 bis 59 Jahre", "über 60 Jahre"))) %>%
+  view()
+
+# nach Stadt/Land (Wahlabsicht 2025)
+calculate_pc_stats(pc_data_long %>%
+                     mutate(urbanrurallive = case_when(urbanrurallive %in% (eupc_codebook %>% filter(item == "urbanrurallive") %>% mutate(value = as.integer(value)) %>% filter(value <= 3) %>% pull(text)) ~ "Stadt",
+                                                       urbanrurallive %in% (eupc_codebook %>% filter(item == "urbanrurallive") %>% mutate(value = as.integer(value)) %>% filter(value > 3) %>% pull(text)) ~ "Land")),
+                   items_list = c("lrgen", "econinterven", "immigratepolicy", "environment", "protectionism"),
+                   sociodemography_list = c("urbanrurallive"),
+                   with_weights = TRUE) %>%
+  arrange(item, urbanrurallive) %>%
+  view()
+

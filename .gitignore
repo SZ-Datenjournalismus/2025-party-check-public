@@ -9,6 +9,7 @@ auth
 manifest.R
 output/ignore/*
 input/ignore/*
+*/ignore/*
 .Rproj.user
 .DS_Store
 .Renviron

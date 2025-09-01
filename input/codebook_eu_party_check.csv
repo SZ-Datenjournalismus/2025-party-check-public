@@ -1,0 +1,496 @@
+item,value,text,question
+age,1,16-17 years,Age of the user
+age,10,55 - 59 years,Age of the user
+age,11,60 - 64 years,Age of the user
+age,12,65 - 69 years,Age of the user
+age,13,70 - 74 years,Age of the user
+age,14,75 - 79 years,Age of the user
+age,15,80 years and older,Age of the user
+age,2,18 - 20 years,Age of the user
+age,3,21 - 24 years,Age of the user
+age,4,25 - 29 years,Age of the user
+age,5,30 - 34 years,Age of the user
+age,6,35 - 39 years,Age of the user
+age,7,40 - 44 years,Age of the user
+age,8,45 - 49 years,Age of the user
+age,9,50 - 54 years,Age of the user
+age,98,Under 16,Age of the user
+antielitism,1,Do not see the political elite critical at all,User's attitude towards the political elite
+antielitism,11,Sees the political elite very critical,User's attitude towards the political elite
+bundesland,1,Baden-Württemberg,Federal state where the user resides
+bundesland,10,Nordrhein-Westfalen,Federal state where the user resides
+bundesland,11,Rheinland-Pfalz,Federal state where the user resides
+bundesland,12,Saarland,Federal state where the user resides
+bundesland,13,Sachsen,Federal state where the user resides
+bundesland,14,Sachsen-Anhalt,Federal state where the user resides
+bundesland,15,Schleswig-Holstein,Federal state where the user resides
+bundesland,16,Thüringen,Federal state where the user resides
+bundesland,2,Bayern,Federal state where the user resides
+bundesland,3,Berlin,Federal state where the user resides
+bundesland,4,Brandenburg,Federal state where the user resides
+bundesland,5,Bremen,Federal state where the user resides
+bundesland,6,Hamburg,Federal state where the user resides
+bundesland,7,Hessen,Federal state where the user resides
+bundesland,8,Mecklenburg-Vorpommern,Federal state where the user resides
+bundesland,9,Niedersachsen,Federal state where the user resides
+bundesland,99,Ich lebe nicht in Deutschland,Federal state where the user resides
+civliblaworder,1,Strongly favors prioritizing civil liberties,The user's opinion on balancing civil liberties and crime prevention
+civliblaworder,11,Strongly favors strict laws to combat crime,The user's opinion on balancing civil liberties and crime prevention
+datestamp,,Date and time format,Date and time user closed website
+demsat,1,Very dissatisfied,User's satisfaction with democracy in Germany
+demsat,2,Dissatisfied,User's satisfaction with democracy in Germany
+demsat,3,Mixed,User's satisfaction with democracy in Germany
+demsat,4,Satisfied,User's satisfaction with democracy in Germany
+demsat,5,Very satisfied,User's satisfaction with democracy in Germany
+demsat,6,Don't know,User's satisfaction with democracy in Germany
+econinterven,1,Strongly supports state intervention in the economy,The user's opinion regarding government intervention in the economy
+econinterven,11,Strongly opposes state intervention in the economy,The user's opinion regarding government intervention in the economy
+education,1,Completed school without a diploma,Highest educational qualification of the user
+education,2,"Secondary general school diploma, vocational school diploma, or completion of the 8th or 9th grade of polytechnic secondary school",Highest educational qualification of the user
+education,3,"Intermediate school diploma, technical school diploma, or completion of the 10th grade of polytechnic secondary school",Highest educational qualification of the user
+education,4,"University of applied sciences entrance qualification (e.g., technical secondary school)",Highest educational qualification of the user
+education,5,High school diploma or advanced secondary school qualification (12th grade),Highest educational qualification of the user
+education,6,Other school qualification,Highest educational qualification of the user
+education,7,Currently at school,Highest educational qualification of the user
+environment,1,"Strongly favors environmental protection, even at the expense of economic growth",The user's opinion on whether environmental protection or economic growth is more important
+environment,11,"Strongly favors economic growth, even at the expense of environmental protection",The user's opinion on whether environmental protection or economic growth is more important
+eucohesion,1,Strongly opposes the EU Structural Funds,"The user's opinion on EU Structural Funds, which provide financial support to economically weak regions"
+eucohesion,11,Strongly supports the EU Structural Funds,"The user's opinion on EU Structural Funds, which provide financial support to economically weak regions"
+euenlargement,1,EU enlargement has gone too far,The user's opinion on whether the EU should expand to include more member states
+euenlargement,10,The EU should be expanded to include additional member states,The user's opinion on whether the EU should expand to include more member states
+euforeign,1,Member states should prioritize their own interests,The user's opinion on strengthening a common EU foreign and security policy
+euforeign,11,It is important for the EU to speak with one voice,The user's opinion on strengthening a common EU foreign and security policy
+euintegrationtoofar,1,The EU should return powers to national governments,The user's opinion on whether the EU's powers are too extensive or need to be expanded
+euintegrationtoofar,11,National governments should transfer more powers to the EU,The user's opinion on whether the EU's powers are too extensive or need to be expanded
+euitems_pc1,1,Strongly disagree,Agreement with: 'I have all the necessary information to decide whom to vote for in the European elections'
+euitems_pc1,2,Somewhat disagree,Agreement with: 'I have all the necessary information to decide whom to vote for in the European elections'
+euitems_pc1,3,Partly agree/Partly disagree,Agreement with: 'I have all the necessary information to decide whom to vote for in the European elections'
+euitems_pc1,4,Somewhat agree,Agreement with: 'I have all the necessary information to decide whom to vote for in the European elections'
+euitems_pc1,5,Strongly agree,Agreement with: 'I have all the necessary information to decide whom to vote for in the European elections'
+euitems_pc3,1,Strongly disagree,Agreement with: 'I feel like a citizen of the EU'
+euitems_pc3,2,Somewhat disagree,Agreement with: 'I feel like a citizen of the EU'
+euitems_pc3,3,Partly agree/Partly disagree,Agreement with: 'I feel like a citizen of the EU'
+euitems_pc3,4,Somewhat agree,Agreement with: 'I feel like a citizen of the EU'
+euitems_pc3,5,Strongly agree,Agreement with: 'I feel like a citizen of the EU'
+euitems_pc4,1,Strongly disagree,Agreement with: 'The European Parliament takes into account the concerns of European citizens'
+euitems_pc4,2,Somewhat disagree,Agreement with: 'The European Parliament takes into account the concerns of European citizens'
+euitems_pc4,3,Partly agree/Partly disagree,Agreement with: 'The European Parliament takes into account the concerns of European citizens'
+euitems_pc4,4,Somewhat agree,Agreement with: 'The European Parliament takes into account the concerns of European citizens'
+euitems_pc4,5,Strongly agree,Agreement with: 'The European Parliament takes into account the concerns of European citizens'
+euitems_pc5,1,Strongly disagree,Agreement with: 'I feel connected to Germany'
+euitems_pc5,2,Somewhat disagree,Agreement with: 'I feel connected to Germany'
+euitems_pc5,3,Partly agree/Partly disagree,Agreement with: 'I feel connected to Germany'
+euitems_pc5,4,Somewhat agree,Agreement with: 'I feel connected to Germany'
+euitems_pc5,5,Strongly agree,Agreement with: 'I feel connected to Germany'
+euitems_pc6,1,Strongly disagree,Agreement with: 'I feel connected to Europe'
+euitems_pc6,2,Somewhat disagree,Agreement with: 'I feel connected to Europe'
+euitems_pc6,3,Partly agree/Partly disagree,Agreement with: 'I feel connected to Europe'
+euitems_pc6,4,Somewhat agree,Agreement with: 'I feel connected to Europe'
+euitems_pc6,5,Strongly agree,Agreement with: 'I feel connected to Europe'
+euitems_pc7,1,Strongly disagree,Agreement with: 'It is very important to me to know which candidates are elected to the EU Parliament in the EU elections'
+euitems_pc7,2,Somewhat disagree,Agreement with: 'It is very important to me to know which candidates are elected to the EU Parliament in the EU elections'
+euitems_pc7,3,Partly agree/Partly disagree,Agreement with: 'It is very important to me to know which candidates are elected to the EU Parliament in the EU elections'
+euitems_pc7,4,Somewhat agree,Agreement with: 'It is very important to me to know which candidates are elected to the EU Parliament in the EU elections'
+euitems_pc7,5,Strongly agree,Agreement with: 'It is very important to me to know which candidates are elected to the EU Parliament in the EU elections'
+euitems_pc8,1,Strongly disagree,Agreement with: 'It is very important to me to know which party has the most representatives for Germany after the elections'
+euitems_pc8,2,Somewhat disagree,Agreement with: 'It is very important to me to know which party has the most representatives for Germany after the elections'
+euitems_pc8,3,Partly agree/Partly disagree,Agreement with: 'It is very important to me to know which party has the most representatives for Germany after the elections'
+euitems_pc8,4,Somewhat agree,Agreement with: 'It is very important to me to know which party has the most representatives for Germany after the elections'
+euitems_pc8,5,Strongly agree,Agreement with: 'It is very important to me to know which party has the most representatives for Germany after the elections'
+euposition,1,Strongly opposed,The user's general attitude toward European integration
+euposition,11,Strongly in favor,The user's general attitude toward European integration
+gender,1,Man,Gender of the user
+gender,2,Woman,Gender of the user
+gender,3,Diverse,Gender of the user
+gender,4,Other,Gender of the user
+immigratepolicy,0,Strongly supports open/liberal immigration policies,The user's opinion on immigration policies
+immigratepolicy,10,Strongly supports strict/restrictive immigration policies,The user's opinion on immigration policies
+lgb,1,The rights of sexual minorities should be restricted,"The user's opinion on expanding or restricting the rights of sexual minorities such as Gays, Bisexuals and Lesbians"
+lgb,11,The rights of sexual minorities should be expanded,"The user's opinion on expanding or restricting the rights of sexual minorities such as Gays, Bisexuals and Lesbians"
+lrgen,1,Left,Self-positioning on a general scale from 'left' to 'right'
+lrgen,11,Right,Self-positioning on a general scale from 'left' to 'right'
+multiculturalism,1,Strongly favor a multicultural society,The user's opinion on whether they prefer a multicultural society or that migrants adapt to the country's culture
+multiculturalism,11,Strongly favor that migrants adapt,The user's opinion on whether they prefer a multicultural society or that migrants adapt to the country's culture
+normdem,-5,Not at all important,How important is it to the user to live in a country that is democratically governed?
+normdem,5,Absolutely important,How important is it to the user to live in a country that is democratically governed?
+out,,Output variable,Output or result variable
+peoplecentrism,1,Not at all,"User's opinion on the statement that people should always have the final say, not political parties or politicians"
+peoplecentrism,11,Very much,"User's opinion on the statement that people should always have the final say, not political parties or politicians"
+polint,1,Not at all,User's self-assessed interest in politics
+polint,2,Not very interested,User's self-assessed interest in politics
+polint,3,Moderate,User's self-assessed interest in politics
+polint,4,Interested,User's self-assessed interest in politics
+polint,5,Very Interested,User's self-assessed interest in politics
+polint,98,Don't know,User's self-assessed interest in politics
+popgen_pc1,1,Strongly disagree,Agreement with: 'Politics in Brussels is practically controlled by a few major interest groups who only think about themselves'
+popgen_pc1,2,Somewhat disagree,Agreement with: 'Politics in Brussels is practically controlled by a few major interest groups who only think about themselves'
+popgen_pc1,3,Partly agree/Partly disagree,Agreement with: 'Politics in Brussels is practically controlled by a few major interest groups who only think about themselves'
+popgen_pc1,4,Somewhat agree,Agreement with: 'Politics in Brussels is practically controlled by a few major interest groups who only think about themselves'
+popgen_pc1,5,Strongly agree,Agreement with: 'Politics in Brussels is practically controlled by a few major interest groups who only think about themselves'
+popgen_pc2,1,Strongly disagree,Agreement with: 'Many politicians in Brussels are corrupt'
+popgen_pc2,2,Somewhat disagree,Agreement with: 'Many politicians in Brussels are corrupt'
+popgen_pc2,3,Partly agree/Partly disagree,Agreement with: 'Many politicians in Brussels are corrupt'
+popgen_pc2,4,Somewhat agree,Agreement with: 'Many politicians in Brussels are corrupt'
+popgen_pc2,5,Strongly agree,Agreement with: 'Many politicians in Brussels are corrupt'
+popgen_pc5,1,Strongly disagree,Agreement with: 'One can judge whether someone is a good or bad person based on their political opinions'
+popgen_pc5,2,Somewhat disagree,Agreement with: 'One can judge whether someone is a good or bad person based on their political opinions'
+popgen_pc5,3,Partly agree/Partly disagree,Agreement with: 'One can judge whether someone is a good or bad person based on their political opinions'
+popgen_pc5,4,Somewhat agree,Agreement with: 'One can judge whether someone is a good or bad person based on their political opinions'
+popgen_pc5,5,Strongly agree,Agreement with: 'One can judge whether someone is a good or bad person based on their political opinions'
+popgen_pc6,1,Strongly disagree,Agreement with: 'People who don't share my political views are not necessarily evil people'
+popgen_pc6,2,Somewhat disagree,Agreement with: 'People who don't share my political views are not necessarily evil people'
+popgen_pc6,3,Partly agree/Partly disagree,Agreement with: 'People who don't share my political views are not necessarily evil people'
+popgen_pc6,4,Somewhat agree,Agreement with: 'People who don't share my political views are not necessarily evil people'
+popgen_pc6,5,Strongly agree,Agreement with: 'People who don't share my political views are not necessarily evil people'
+popgen_pc7,1,Strongly disagree,Agreement with: 'People who don't share my political views are just misinformed'
+popgen_pc7,2,Somewhat disagree,Agreement with: 'People who don't share my political views are just misinformed'
+popgen_pc7,3,Partly agree/Partly disagree,Agreement with: 'People who don't share my political views are just misinformed'
+popgen_pc7,4,Somewhat agree,Agreement with: 'People who don't share my political views are just misinformed'
+popgen_pc7,5,Strongly agree,Agreement with: 'People who don't share my political views are just misinformed'
+popnonreg_pc1,1,Strongly disagree,User's opinion on the statement: 'German interests are neglected in Brussels'
+popnonreg_pc1,2,Somewhat disagree,User's opinion on the statement: 'German interests are neglected in Brussels'
+popnonreg_pc1,3,Partly agree/Partly disagree,User's opinion on the statement: 'German interests are neglected in Brussels'
+popnonreg_pc1,4,Somewhat agree,User's opinion on the statement: 'German interests are neglected in Brussels'
+popnonreg_pc1,5,Strongly agree,User's opinion on the statement: 'German interests are neglected in Brussels'
+popnonreg_pc2,1,Strongly disagree,User's opinion on the statement: 'Politicians use their power to improve people's lives'
+popnonreg_pc2,2,Somewhat disagree,User's opinion on the statement: 'Politicians use their power to improve people's lives'
+popnonreg_pc2,3,Partly agree/Partly disagree,User's opinion on the statement: 'Politicians use their power to improve people's lives'
+popnonreg_pc2,4,Somewhat agree,User's opinion on the statement: 'Politicians use their power to improve people's lives'
+popnonreg_pc2,5,Strongly agree,User's opinion on the statement: 'Politicians use their power to improve people's lives'
+popnonreg_pc4,1,Strongly disagree,User's opinion on the statement: 'EU politicians in Brussels waste hard-earned German tax money'
+popnonreg_pc4,2,Somewhat disagree,User's opinion on the statement: 'EU politicians in Brussels waste hard-earned German tax money'
+popnonreg_pc4,3,Partly agree/Partly disagree,User's opinion on the statement: 'EU politicians in Brussels waste hard-earned German tax money'
+popnonreg_pc4,4,Somewhat agree,User's opinion on the statement: 'EU politicians in Brussels waste hard-earned German tax money'
+popnonreg_pc4,5,Strongly agree,User's opinion on the statement: 'EU politicians in Brussels waste hard-earned German tax money'
+popnonreg_pc5,1,Strongly disagree,"User's opinion on the statement: 'The people, not politicians, should make the most important political decisions'"
+popnonreg_pc5,2,Somewhat disagree,"User's opinion on the statement: 'The people, not politicians, should make the most important political decisions'"
+popnonreg_pc5,3,Partly agree/Partly disagree,"User's opinion on the statement: 'The people, not politicians, should make the most important political decisions'"
+popnonreg_pc5,4,Somewhat agree,"User's opinion on the statement: 'The people, not politicians, should make the most important political decisions'"
+popnonreg_pc5,5,Strongly agree,"User's opinion on the statement: 'The people, not politicians, should make the most important political decisions'"
+popnonreg_pc6,1,Strongly disagree,User's opinion on the statement: 'The will of the people should be the most important principle for the country's politics'
+popnonreg_pc6,2,Somewhat disagree,User's opinion on the statement: 'The will of the people should be the most important principle for the country's politics'
+popnonreg_pc6,3,Partly agree/Partly disagree,User's opinion on the statement: 'The will of the people should be the most important principle for the country's politics'
+popnonreg_pc6,4,Somewhat agree,User's opinion on the statement: 'The will of the people should be the most important principle for the country's politics'
+popnonreg_pc6,5,Strongly agree,User's opinion on the statement: 'The will of the people should be the most important principle for the country's politics'
+popnonreg_pc7,1,Strongly disagree,User's opinion on the statement: 'Politicians should always listen carefully to people's problems'
+popnonreg_pc7,2,Somewhat disagree,User's opinion on the statement: 'Politicians should always listen carefully to people's problems'
+popnonreg_pc7,3,Partly agree/Partly disagree,User's opinion on the statement: 'Politicians should always listen carefully to people's problems'
+popnonreg_pc7,4,Somewhat agree,User's opinion on the statement: 'Politicians should always listen carefully to people's problems'
+popnonreg_pc7,5,Strongly agree,User's opinion on the statement: 'Politicians should always listen carefully to people's problems'
+popnonreg_pc8,1,Strongly disagree,User's opinion on the statement: 'Politicians do not necessarily need to spend time with ordinary people to do a good job'
+popnonreg_pc8,2,Somewhat disagree,User's opinion on the statement: 'Politicians do not necessarily need to spend time with ordinary people to do a good job'
+popnonreg_pc8,3,Partly agree/Partly disagree,User's opinion on the statement: 'Politicians do not necessarily need to spend time with ordinary people to do a good job'
+popnonreg_pc8,4,Somewhat agree,User's opinion on the statement: 'Politicians do not necessarily need to spend time with ordinary people to do a good job'
+popnonreg_pc8,5,Strongly agree,User's opinion on the statement: 'Politicians do not necessarily need to spend time with ordinary people to do a good job'
+popreg_pc1,1,Strongly disagree,User's opinion on the statement: 'East German interests are neglected in Brussels'
+popreg_pc1,2,Somewhat disagree,User's opinion on the statement: 'East German interests are neglected in Brussels'
+popreg_pc1,3,Partly agree/Partly disagree,User's opinion on the statement: 'East German interests are neglected in Brussels'
+popreg_pc1,4,Somewhat agree,User's opinion on the statement: 'East German interests are neglected in Brussels'
+popreg_pc1,5,Strongly agree,User's opinion on the statement: 'East German interests are neglected in Brussels'
+popreg_pc10,1,Strongly disagree,User's opinion on the statement: 'Politicians in Brussels do not use their power to improve the lives of people in Western Germany'
+popreg_pc10,2,Somewhat disagree,User's opinion on the statement: 'Politicians in Brussels do not use their power to improve the lives of people in Western Germany'
+popreg_pc10,3,Partly agree/Partly disagree,User's opinion on the statement: 'Politicians in Brussels do not use their power to improve the lives of people in Western Germany'
+popreg_pc10,4,Somewhat agree,User's opinion on the statement: 'Politicians in Brussels do not use their power to improve the lives of people in Western Germany'
+popreg_pc10,5,Strongly agree,User's opinion on the statement: 'Politicians in Brussels do not use their power to improve the lives of people in Western Germany'
+popreg_pc12,1,Strongly disagree,User's opinion on the statement: 'EU politicians in Brussels waste hard-earned tax money from Western Germany'
+popreg_pc12,2,Somewhat disagree,User's opinion on the statement: 'EU politicians in Brussels waste hard-earned tax money from Western Germany'
+popreg_pc12,3,Partly agree/Partly disagree,User's opinion on the statement: 'EU politicians in Brussels waste hard-earned tax money from Western Germany'
+popreg_pc12,4,Somewhat agree,User's opinion on the statement: 'EU politicians in Brussels waste hard-earned tax money from Western Germany'
+popreg_pc12,5,Strongly agree,User's opinion on the statement: 'EU politicians in Brussels waste hard-earned tax money from Western Germany'
+popreg_pc13,1,Strongly disagree,"User's opinion on the statement: 'The Western German people should make the most important political decisions for Western Germany, not the politicians in Berlin'"
+popreg_pc13,2,Somewhat disagree,"User's opinion on the statement: 'The Western German people should make the most important political decisions for Western Germany, not the politicians in Berlin'"
+popreg_pc13,3,Partly agree/Partly disagree,"User's opinion on the statement: 'The Western German people should make the most important political decisions for Western Germany, not the politicians in Berlin'"
+popreg_pc13,4,Somewhat agree,"User's opinion on the statement: 'The Western German people should make the most important political decisions for Western Germany, not the politicians in Berlin'"
+popreg_pc13,5,Strongly agree,"User's opinion on the statement: 'The Western German people should make the most important political decisions for Western Germany, not the politicians in Berlin'"
+popreg_pc14,1,Strongly disagree,User's opinion on the statement: 'The will of the Western German population should be the most important principle for the politics in Western Germany'
+popreg_pc14,2,Somewhat disagree,User's opinion on the statement: 'The will of the Western German population should be the most important principle for the politics in Western Germany'
+popreg_pc14,3,Partly agree/Partly disagree,User's opinion on the statement: 'The will of the Western German population should be the most important principle for the politics in Western Germany'
+popreg_pc14,4,Somewhat agree,User's opinion on the statement: 'The will of the Western German population should be the most important principle for the politics in Western Germany'
+popreg_pc14,5,Strongly agree,User's opinion on the statement: 'The will of the Western German population should be the most important principle for the politics in Western Germany'
+popreg_pc15,1,Strongly disagree,User's opinion on the statement: 'Politicians in Brussels should always listen carefully when it comes to the problems of the people in Western Germany'
+popreg_pc15,2,Somewhat disagree,User's opinion on the statement: 'Politicians in Brussels should always listen carefully when it comes to the problems of the people in Western Germany'
+popreg_pc15,3,Partly agree/Partly disagree,User's opinion on the statement: 'Politicians in Brussels should always listen carefully when it comes to the problems of the people in Western Germany'
+popreg_pc15,4,Somewhat agree,User's opinion on the statement: 'Politicians in Brussels should always listen carefully when it comes to the problems of the people in Western Germany'
+popreg_pc15,5,Strongly agree,User's opinion on the statement: 'Politicians in Brussels should always listen carefully when it comes to the problems of the people in Western Germany'
+popreg_pc16,1,Strongly disagree,User's opinion on the statement: 'Politicians in Brussels must spend time with ordinary people in Western Germany to do a good job'
+popreg_pc16,2,Somewhat disagree,User's opinion on the statement: 'Politicians in Brussels must spend time with ordinary people in Western Germany to do a good job'
+popreg_pc16,3,Partly agree/Partly disagree,User's opinion on the statement: 'Politicians in Brussels must spend time with ordinary people in Western Germany to do a good job'
+popreg_pc16,4,Somewhat agree,User's opinion on the statement: 'Politicians in Brussels must spend time with ordinary people in Western Germany to do a good job'
+popreg_pc16,5,Strongly agree,User's opinion on the statement: 'Politicians in Brussels must spend time with ordinary people in Western Germany to do a good job'
+popreg_pc2,1,Strongly disagree,User's opinion on the statement: 'Politicians in Brussels do not use their power to improve the lives of people in East Germany'
+popreg_pc2,2,Somewhat disagree,User's opinion on the statement: 'Politicians in Brussels do not use their power to improve the lives of people in East Germany'
+popreg_pc2,3,Partly agree/Partly disagree,User's opinion on the statement: 'Politicians in Brussels do not use their power to improve the lives of people in East Germany'
+popreg_pc2,4,Somewhat agree,User's opinion on the statement: 'Politicians in Brussels do not use their power to improve the lives of people in East Germany'
+popreg_pc2,5,Strongly agree,User's opinion on the statement: 'Politicians in Brussels do not use their power to improve the lives of people in East Germany'
+popreg_pc4,1,Strongly disagree,User's opinion on the statement: 'EU politicians in Brussels waste hard-earned tax money from East Germany'
+popreg_pc4,2,Somewhat disagree,User's opinion on the statement: 'EU politicians in Brussels waste hard-earned tax money from East Germany'
+popreg_pc4,3,Partly agree/Partly disagree,User's opinion on the statement: 'EU politicians in Brussels waste hard-earned tax money from East Germany'
+popreg_pc4,4,Somewhat agree,User's opinion on the statement: 'EU politicians in Brussels waste hard-earned tax money from East Germany'
+popreg_pc4,5,Strongly agree,User's opinion on the statement: 'EU politicians in Brussels waste hard-earned tax money from East Germany'
+popreg_pc5,1,Strongly disagree,"User's opinion on the statement: 'The East German people should make the most important political decisions for East Germany, not politicians in Berlin'"
+popreg_pc5,2,Somewhat disagree,"User's opinion on the statement: 'The East German people should make the most important political decisions for East Germany, not politicians in Berlin'"
+popreg_pc5,3,Partly agree/Partly disagree,"User's opinion on the statement: 'The East German people should make the most important political decisions for East Germany, not politicians in Berlin'"
+popreg_pc5,4,Somewhat agree,"User's opinion on the statement: 'The East German people should make the most important political decisions for East Germany, not politicians in Berlin'"
+popreg_pc5,5,Strongly agree,"User's opinion on the statement: 'The East German people should make the most important political decisions for East Germany, not politicians in Berlin'"
+popreg_pc6,1,Strongly disagree,User's opinion on the statement: 'The will of the East German people should be the most important principle for East German politics'
+popreg_pc6,2,Somewhat disagree,User's opinion on the statement: 'The will of the East German people should be the most important principle for East German politics'
+popreg_pc6,3,Partly agree/Partly disagree,User's opinion on the statement: 'The will of the East German people should be the most important principle for East German politics'
+popreg_pc6,4,Somewhat agree,User's opinion on the statement: 'The will of the East German people should be the most important principle for East German politics'
+popreg_pc6,5,Strongly agree,User's opinion on the statement: 'The will of the East German people should be the most important principle for East German politics'
+popreg_pc7,1,Strongly disagree,User's opinion on the statement: 'Politicians in Brussels should always listen carefully to the problems of people in East Germany'
+popreg_pc7,2,Somewhat disagree,User's opinion on the statement: 'Politicians in Brussels should always listen carefully to the problems of people in East Germany'
+popreg_pc7,3,Partly agree/Partly disagree,User's opinion on the statement: 'Politicians in Brussels should always listen carefully to the problems of people in East Germany'
+popreg_pc7,4,Somewhat agree,User's opinion on the statement: 'Politicians in Brussels should always listen carefully to the problems of people in East Germany'
+popreg_pc7,5,Strongly agree,User's opinion on the statement: 'Politicians in Brussels should always listen carefully to the problems of people in East Germany'
+popreg_pc8,1,Strongly disagree,User's opinion on the statement: 'Politicians in Brussels must spend time with ordinary people in East Germany to do a good job'
+popreg_pc8,2,Somewhat disagree,User's opinion on the statement: 'Politicians in Brussels must spend time with ordinary people in East Germany to do a good job'
+popreg_pc8,3,Partly agree/Partly disagree,User's opinion on the statement: 'Politicians in Brussels must spend time with ordinary people in East Germany to do a good job'
+popreg_pc8,4,Somewhat agree,User's opinion on the statement: 'Politicians in Brussels must spend time with ordinary people in East Germany to do a good job'
+popreg_pc8,5,Strongly agree,User's opinion on the statement: 'Politicians in Brussels must spend time with ordinary people in East Germany to do a good job'
+popreg_pc9,1,Strongly disagree,User's opinion on the statement: 'Western German interests are neglected in Brussels'
+popreg_pc9,2,Somewhat disagree,User's opinion on the statement: 'Western German interests are neglected in Brussels'
+popreg_pc9,3,Partly agree/Partly disagree,User's opinion on the statement: 'Western German interests are neglected in Brussels'
+popreg_pc9,4,Somewhat agree,User's opinion on the statement: 'Western German interests are neglected in Brussels'
+popreg_pc9,5,Strongly agree,User's opinion on the statement: 'Western German interests are neglected in Brussels'
+protectionism,1,Strongly supports international free trade,The user's opinion on whether they favor free trade or protectionism
+protectionism,11,Strongly supports protecting domestic production,The user's opinion on whether they favor free trade or protectionism
+ptv_afd,-5,Very unlikely,Likelihood the user assigns to voting for the AFD in a future election
+ptv_afd,5,Very likely,Likelihood the user assigns to voting for the AFD in a future election
+ptv_bsw,-5,Very unlikely,Likelihood the user assigns to voting for the BSW in a future election
+ptv_bsw,5,Very likely,Likelihood the user assigns to voting for the BSW in a future election
+ptv_cdu,-5,Very unlikely,Likelihood the user assigns to voting for the CDU in a future election
+ptv_cdu,5,Very likely,Likelihood the user assigns to voting for the CDU in a future election
+ptv_climatelist,-5,Very unlikely,Likelihood the user assigns to voting for the Climate List in a future election
+ptv_climatelist,5,Very likely,Likelihood the user assigns to voting for the Climate List in a future election
+ptv_csu,-5,Very unlikely,Likelihood the user assigns to voting for the CSU in a future election
+ptv_csu,5,Very likely,Likelihood the user assigns to voting for the CSU in a future election
+ptv_fdp,-5,Very unlikely,Likelihood the user assigns to voting for the FDP in a future election
+ptv_fdp,5,Very likely,Likelihood the user assigns to voting for the FDP in a future election
+ptv_freevoters,-5,Very unlikely,Likelihood the user assigns to voting for the FREEVOTERS in a future election
+ptv_freevoters,5,Very likely,Likelihood the user assigns to voting for the FREEVOTERS in a future election
+ptv_greens,-5,Very unlikely,Likelihood the user assigns to voting for the GREENS in a future election
+ptv_greens,5,Very likely,Likelihood the user assigns to voting for the GREENS in a future election
+ptv_left,-5,Very unlikely,Likelihood the user assigns to voting for the LEFT in a future election
+ptv_left,5,Very likely,Likelihood the user assigns to voting for the LEFT in a future election
+ptv_spd,-5,Very unlikely,Likelihood the user assigns to voting for the SPD in a future election
+ptv_spd,5,Very likely,Likelihood the user assigns to voting for the SPD in a future election
+ptv_volt,-5,Very unlikely,Likelihood the user assigns to voting for the VOLT in a future election
+ptv_volt,5,Very likely,Likelihood the user assigns to voting for the VOLT in a future election
+random,,Random assignment variable,Random assignment for experimental conditions
+recall,1,SPD,Political party voted for in the last federal election (2021) with the second vote
+recall,10,Die PARTEI,Political party voted for in the last federal election (2021) with the second vote
+recall,11,dieBasis,Political party voted for in the last federal election (2021) with the second vote
+recall,12,Tierschutzpartei,Political party voted for in the last federal election (2021) with the second vote
+recall,13,ÖDP,Political party voted for in the last federal election (2021) with the second vote
+recall,14,Bündnis Deutschland,Political party voted for in the last federal election (2021) with the second vote
+recall,15,Piratenpartei,Political party voted for in the last federal election (2021) with the second vote
+recall,16,Diem/Mera25,Political party voted for in the last federal election (2021) with the second vote
+recall,17,PdH (Partei der Humanisten),Political party voted for in the last federal election (2021) with the second vote
+recall,18,(leer),Political party voted for in the last federal election (2021) with the second vote
+recall,19,PdF (Partei des Fortschritts),Political party voted for in the last federal election (2021) with the second vote
+recall,2,CDU/CSU,Political party voted for in the last federal election (2021) with the second vote
+recall,20,Familienpartei,Political party voted for in the last federal election (2021) with the second vote
+recall,21,PdV (Partei der Vernunft),Political party voted for in the last federal election (2021) with the second vote
+recall,22,V3 Partei,Political party voted for in the last federal election (2021) with the second vote
+recall,23,Letzte Generation (Parlament aufmischen),Political party voted for in the last federal election (2021) with the second vote
+recall,24,Klimaliste,Political party voted for in the last federal election (2021) with the second vote
+recall,25,Werteunion,Political party voted for in the last federal election (2021) with the second vote
+recall,3,Grüne,Political party voted for in the last federal election (2021) with the second vote
+recall,32,Sonstige,Political party voted for in the last federal election (2021) with the second vote
+recall,33,Ich habe nicht gewählt,Political party voted for in the last federal election (2021) with the second vote
+recall,4,FDP,Political party voted for in the last federal election (2021) with the second vote
+recall,5,AfD,Political party voted for in the last federal election (2021) with the second vote
+recall,6,Die Linke,Political party voted for in the last federal election (2021) with the second vote
+recall,7,BSW,Political party voted for in the last federal election (2021) with the second vote
+recall,8,Freie Wähler,Political party voted for in the last federal election (2021) with the second vote
+recall,9,Volt,Political party voted for in the last federal election (2021) with the second vote
+recall,97,Ich war nicht wahlberechtigt,Political party voted for in the last federal election (2021) with the second vote
+recall,98,Ich habe ungültig gewählt,Political party voted for in the last federal election (2021) with the second vote
+recall,99,Ich erinnere mich nicht,Political party voted for in the last federal election (2021) with the second vote
+recallland,1,SPD,Political party voted for in the last state election (2019) with the second vote
+recallland,10,Die PARTEI,Political party voted for in the last state election (2019) with the second vote
+recallland,11,dieBasis,Political party voted for in the last state election (2019) with the second vote
+recallland,12,Tierschutzpartei,Political party voted for in the last state election (2019) with the second vote
+recallland,13,ÖDP,Political party voted for in the last state election (2019) with the second vote
+recallland,14,Bündnis Deutschland,Political party voted for in the last state election (2019) with the second vote
+recallland,15,Piratenpartei,Political party voted for in the last state election (2019) with the second vote
+recallland,16,Diem/Mera25,Political party voted for in the last state election (2019) with the second vote
+recallland,17,PdH (Partei der Humanisten),Political party voted for in the last state election (2019) with the second vote
+recallland,18,(leer),Political party voted for in the last state election (2019) with the second vote
+recallland,19,PdF (Partei des Fortschritts),Political party voted for in the last state election (2019) with the second vote
+recallland,2,CDU/CSU,Political party voted for in the last state election (2019) with the second vote
+recallland,20,Familienpartei,Political party voted for in the last state election (2019) with the second vote
+recallland,21,PdV (Partei der Vernunft),Political party voted for in the last state election (2019) with the second vote
+recallland,22,V3 Partei,Political party voted for in the last state election (2019) with the second vote
+recallland,23,Letzte Generation (Parlament aufmischen),Political party voted for in the last state election (2019) with the second vote
+recallland,24,Klimaliste,Political party voted for in the last state election (2019) with the second vote
+recallland,25,Werteunion,Political party voted for in the last state election (2019) with the second vote
+recallland,3,Grüne,Political party voted for in the last state election (2019) with the second vote
+recallland,32,Sonstige,Political party voted for in the last state election (2019) with the second vote
+recallland,33,Ich habe nicht gewählt,Political party voted for in the last state election (2019) with the second vote
+recallland,4,FDP,Political party voted for in the last state election (2019) with the second vote
+recallland,5,AfD,Political party voted for in the last state election (2019) with the second vote
+recallland,6,Die Linke,Political party voted for in the last state election (2019) with the second vote
+recallland,7,BSW,Political party voted for in the last state election (2019) with the second vote
+recallland,8,Freie Wähler,Political party voted for in the last state election (2019) with the second vote
+recallland,9,Volt,Political party voted for in the last state election (2019) with the second vote
+recallland,97,Ich war nicht wahlberechtigt,Political party voted for in the last state election (2019) with the second vote
+recallland,98,Ich habe ungültig gewählt,Political party voted for in the last state election (2019) with the second vote
+recallland,99,Ich erinnere mich nicht,Political party voted for in the last state election (2019) with the second vote
+recallland_other,,Other party specification,Other party voted for in last state election
+redistribution,1,Strongly supports social redistribution,The user's opinion on social redistribution policies
+redistribution,11,Strongly opposes social redistribution,The user's opinion on social redistribution policies
+salcivliblaworder,1,Not at all important,Importance of this issue
+salcivliblaworder,11,Very important,Importance of this issue
+saleconinterven,1,Not at all important,Importance of this issue
+saleconinterven,11,Very important,Importance of this issue
+salenvironment,1,Not at all important,Importance of this issue
+salenvironment,11,Very important,Importance of this issue
+saleucohesion,1,Not at all important,Importance of this issue
+saleucohesion,11,Very important,Importance of this issue
+saleuenlargement,1,Not at all important,Importance of this issue
+saleuenlargement,11,Very important,Importance of this issue
+saleuforeign,1,Not at all important,Importance of this issue
+saleuforeign,11,Very important,Importance of this issue
+saleuintegrationtoofar,1,Not at all important,Importance of this issue
+saleuintegrationtoofar,11,Very important,Importance of this issue
+saleuposition,1,Not at all important,Importance of this issue
+saleuposition,11,Very important,Importance of this issue
+salimmigratepolicy,1,Not at all important,Importance of this issue
+salimmigratepolicy,11,Very important,Importance of this issue
+sallgb,1,Not at all important,Importance of this issue
+sallgb,11,Very important,Importance of this issue
+salmulticulturalism,1,Not at all important,Importance of this issue
+salmulticulturalism,11,Very important,Importance of this issue
+salprotectionism,1,Not at all important,Importance of this issue
+salprotectionism,11,Very important,Importance of this issue
+salredistribution,1,Not at all important,Importance of this issue
+salredistribution,11,Very important,Importance of this issue
+saltrans,1,Not at all important,Importance of this issue
+saltrans,11,Very important,Importance of this issue
+salurbanrural,1,Not at all important,Importance of this issue
+salurbanrural,11,Very important,Importance of this issue
+socself,1,conservative,Self-positioning on a societal scale from 'conservative' to 'progressive'
+socself,11,progressive,Self-positioning on a societal scale from 'conservative' to 'progressive'
+startdate,,Date and time format,Date and time user started answering questions
+trans,1,Transgender rights should be restricted,User's opinion on the rights of transgender individuals
+trans,11,Transgender rights should be expanded,User's opinion on the rights of transgender individuals
+trustslider_army,-5,Do not trust at all,Trust in German Armed Forces
+trustslider_army,5,Trust completely,Trust in German Armed Forces
+trustslider_breg,-5,Do not trust at all,Trust in Federal Government
+trustslider_breg,5,Trust completely,Trust in Federal Government
+trustslider_btag,-5,Do not trust at all,Trust in Federal Parliament
+trustslider_btag,5,Trust completely,Trust in Federal Parliament
+trustslider_bverfg,-5,Do not trust at all,Trust in Federal Constitutional Court
+trustslider_bverfg,5,Trust completely,Trust in Federal Constitutional Court
+trustslider_china,-5,Do not trust at all,Trust in Chinese Government
+trustslider_china,5,Trust completely,Trust in Chinese Government
+trustslider_eu,-5,Do not trust at all,Trust in EU
+trustslider_eu,5,Trust completely,Trust in EU
+trustslider_nato,-5,Do not trust at all,Trust in NATO
+trustslider_nato,5,Trust completely,Trust in NATO
+trustslider_parties,-5,Do not trust at all,Trust in Political parties
+trustslider_parties,5,Trust completely,Trust in Political parties
+trustslider_politicians,-5,Do not trust at all,Trust in Politicians
+trustslider_politicians,5,Trust completely,Trust in Politicians
+trustslider_russia,-5,Do not trust at all,Trust in Russian Government
+trustslider_russia,5,Trust completely,Trust in Russian Government
+trustslider_usa,-5,Do not trust at all,Trust in US Government
+trustslider_usa,5,Trust completely,Trust in US Government
+trustslider_verfsch,-5,Do not trust at all,Trust in Federal Office for the Protection of the Constitution
+trustslider_verfsch,5,Trust completely,Trust in Federal Office for the Protection of the Constitution
+university,1,yes,"Does the user have a university degree (e.g., Bachelor, Master, Diploma, Magister)?"
+university,2,no,"Does the user have a university degree (e.g., Bachelor, Master, Diploma, Magister)?"
+urbanrural,1,Strongly support rural interests,Support the user shows for rural vs. urban interests
+urbanrural,11,Strongly support urban interests,Support the user shows for rural vs. urban interests
+urbanrurallive,1,Large city,Respondent's self-assessment of place of residence
+urbanrurallive,2,Edge or suburb of a large city,Respondent's self-assessment of place of residence
+urbanrurallive,3,Medium-sized city,Respondent's self-assessment of place of residence
+urbanrurallive,4,Small town,Respondent's self-assessment of place of residence
+urbanrurallive,5,Rural village,Respondent's self-assessment of place of residence
+urbanrurallive,6,Isolated farm or standalone rural house,Respondent's self-assessment of place of residence
+votint,1,SPD,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,10,Die PARTEI,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,11,dieBasis,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,12,Tierschutzpartei,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,13,ÖDP,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,14,Bündnis Deutschland,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,15,Piratenpartei,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,16,Diem/Mera25,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,17,PdH (Partei der Humanisten),Vote Intention for Bundestag Elections if they were held on Sunday
+votint,18,(leer),Vote Intention for Bundestag Elections if they were held on Sunday
+votint,19,PdF (Partei des Fortschritts),Vote Intention for Bundestag Elections if they were held on Sunday
+votint,2,CDU/CSU,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,20,Familienpartei,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,21,PdV (Partei der Vernunft),Vote Intention for Bundestag Elections if they were held on Sunday
+votint,22,V3 Partei,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,23,Letzte Generation (Parlament aufmischen),Vote Intention for Bundestag Elections if they were held on Sunday
+votint,24,Klimaliste,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,25,Werteunion,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,3,Grüne,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,32,Sonstige,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,33,Ich würde nicht wählen gehen,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,4,FDP,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,5,AfD,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,6,Die Linke,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,7,BSW,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,8,Freie Wähler,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,9,Volt,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,97,Ich wäre nicht wahlberechtigt,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,98,Ich würde ungültig wählen,Vote Intention for Bundestag Elections if they were held on Sunday
+votint,99,Weiß nicht,Vote Intention for Bundestag Elections if they were held on Sunday
+votinteu,1,SPD,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,10,Die PARTEI,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,11,dieBasis,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,12,Tierschutzpartei,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,13,ÖDP,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,14,Bündnis Deutschland,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,15,Piratenpartei,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,16,Diem/Mera25,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,17,PdH (Partei der Humanisten),"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,18,(leer),"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,19,PdF (Partei des Fortschritts),"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,2,CDU/CSU,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,20,Familienpartei,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,21,PdV (Partei der Vernunft),"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,22,V3 Partei,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,23,Letzte Generation (Parlament aufmischen),"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,24,Klimaliste,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,25,Werteunion,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,3,Grüne,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,32,Sonstige,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,33,Werde nicht wählen,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,4,FDP,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,5,AfD,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,6,Die Linke,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,7,BSW,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,8,Freie Wähler,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,9,Volt,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,97,Ich bin nicht wahlberechtigt,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,98,Ich werde ungültig wählen,"User's voting intention for the upcoming EU election on June 9, 2024"
+votinteu,99,Ich weiß nicht,"User's voting intention for the upcoming EU election on June 9, 2024"
+wishesmajority,1,Strongly disagree,"Agreement with: 'For years, the government has ignored the wishes of the majority'"
+wishesmajority,2,Somewhat disagree,"Agreement with: 'For years, the government has ignored the wishes of the majority'"
+wishesmajority,3,Partly agree/Partly disagree,"Agreement with: 'For years, the government has ignored the wishes of the majority'"
+wishesmajority,4,Somewhat agree,"Agreement with: 'For years, the government has ignored the wishes of the majority'"
+wishesmajority,5,Strongly agree,"Agreement with: 'For years, the government has ignored the wishes of the majority'"
+wishesmajority_afd,Y,Yes,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_afd,,No selection,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_bsw,Y,Yes,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_bsw,,No selection,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_cdu,Y,Yes,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_cdu,,No selection,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_csu,Y,Yes,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_csu,,No selection,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_fdp,Y,Yes,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_fdp,,No selection,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_freevoters,Y,Yes,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_freevoters,,No selection,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_greens,Y,Yes,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_greens,,No selection,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_left,Y,Yes,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_left,,No selection,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_nonofparties,Y,Yes,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_nonofparties,,No selection,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_spd,Y,Yes,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)
+wishesmajority_spd,,No selection,Which party/parties do you trust most to solve this problem? (refers to wishesmajority)

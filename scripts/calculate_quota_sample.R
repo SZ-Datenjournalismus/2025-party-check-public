@@ -48,17 +48,27 @@ eurostat_census_weights <- eurostat_census_weights %>%
   ) %>%
   select(-pct)
 
+# Seltene Kombinationen aus soziodemographischen Variablen können in der Stichprobe fehlen.
+# Kombinationen identifizieren, die in der Stichprobe vorhanden sind
+sample_combinations <- rv_ger.d$variables %>%
+  select(sex, age, edu, geo2) %>%
+  distinct()
+
+# Zensusdaten filtern, um nur Kombinationen zu behalten, die in der Stichprobe vorkommen
+eurostat_census_weights_filtered <- eurostat_census_weights %>%
+  semi_join(sample_combinations, by = c("sex", "age", "edu", "geo2"))
+
 # Raking durchführen ####
 rv_ger.r <- rake(
   design = rv_ger.d, 
   sample.margins = list(~sex+age+edu+geo2),
-  population.margins = list(eurostat_census_weights),
+  population.margins = list(eurostat_census_weights_filtered),
   control = list(maxit = 50)
 )
 
 # Überprüfung der Gewichte
 cat("Bereich der Gewichte:", range(weights(rv_ger.r)), "\n")
-cat("Summe der Gewichte:", sum(weights(rv_ger.r)), "(sollte der Stichprobengröße entsprechen)\n")
+cat("Summe der Gewichte:", sum(weights(rv_ger.r)), "(sollte der Stichprobengröße entsprechen, sonst seed ändern)\n")
 
 # Gewichte extrahieren
 weights_df <- tibble(
@@ -78,3 +88,6 @@ print(table(pc_data_quota_sample$votinteu))
 
 # Gewichtete Daten speichern ####
 write_csv(pc_data_quota_sample, here("input", "party_check_data_quota_weighted.csv"))
+
+message("Annähernd repräsentative Stichprobe (n = 2000) erstellt und gespeichert.")
+

@@ -144,3 +144,34 @@ calculate_pc_stats <- function(df, items_list, sociodemography_list, with_weight
   
   return(result_df)
 }
+
+#' Übersetzt die Werte in einer Spalte basierend auf einem Codebook
+#' 
+#' Diese Funktion übersetzt die Werte in einer Spalte eines Dataframes basierend auf einem Codebook.
+#' 
+#' @param df Ein Dataframe, das die zu übersetzende Spalte enthält.
+#' @param column_name Der Name der Spalte, die übersetzt werden soll.
+#' @param codebook Ein Dataframe, das die Übersetzungen enthält. Es sollte mindestens zwei Spalten haben: 'value' und 'text'.
+#' 
+#' @return Ein Dataframe mit der übersetzten Spalte.
+recode_with_codebook <- function(df, column_name, codebook) {
+  if (!column_name %in% names(df)) {
+    stop(paste("Die Spalte", column_name, "ist im Dataframe nicht vorhanden."))
+  }
+  
+  if (!all(c("value", "text") %in% names(codebook))) {
+    stop("Das Codebook muss die Spalten 'value' und 'text' enthalten.")
+  }
+  
+  df <- df %>%
+    left_join(codebook %>%
+                filter(item == column_name) %>%
+                mutate(value = as.numeric(value)) %>%
+                select(-item),
+              by = join_by(!!sym(column_name) == "value")) %>%
+    mutate(!!sym(column_name) := coalesce(text, as.character(!!sym(column_name)))) %>%
+    select(-any_of(c("text", "question")))
+  
+  return(df)
+}
+

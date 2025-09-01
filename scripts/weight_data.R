@@ -24,7 +24,7 @@ set.seed(123) # für Reproduzierbarkeit
 #     # nur relevante Altersgruppen behalten
 #     age %in% age_groups,
 #     # für die Europawahl 2024 nur die Bevölkerungsstruktur von 2024 behalten
-#     TIME_PERIOD == "2024-01-01"
+#     TIME_PERIOD == "2024-01-01" # kann alternativ auf ein anderes Jahr geändert werden
 #   )
 # 
 # # Altersgruppen erstellen
@@ -242,4 +242,6 @@ pc_data_final <- pc_data_raw %>%
 
 # Gewichtete Daten speichern
 write_csv(pc_data_final, here("input", "party_check_data_weighted.csv"))
+
+message("Gewichtete Daten wurden erfolgreich berechnet und gespeichert.")
 
