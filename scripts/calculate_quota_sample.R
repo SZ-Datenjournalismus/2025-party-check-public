@@ -1,6 +1,9 @@
 # In diesem Skript wird aus dem Party Check Datensatz und den via Zensus berechneten Gewichten
 # eine annähernd repräsentative Stichprobe (n = 2000) erstellt.
 
+# Stichprobengröße festlegen
+sample_size <- 2000
+
 # Konfiguration laden ####
 source("scripts/config.R")
 
@@ -26,7 +29,7 @@ pc_data_weighted <- pc_data_weighted %>%
   filter(!is.na(votinteu) & !is.na(antielitism) & !is.na(peoplecentrism) & !is.na(lrgen))
 
 # Stichprobe ziehen mit Gewichtung ####
-samp_idx <- sample(seq_len(nrow(pc_data_weighted)), 2000, prob = pc_data_weighted$w)
+samp_idx <- sample(seq_len(nrow(pc_data_weighted)), sample_size, prob = pc_data_weighted$w)
 pc_data_weighted <- pc_data_weighted[samp_idx, ]
 
 # Zensus-Daten für Gruppen einlesen
@@ -89,5 +92,5 @@ print(table(pc_data_quota_sample$votinteu))
 # Gewichtete Daten speichern ####
 write_csv(pc_data_quota_sample, here("input", "party_check_data_quota_weighted.csv"))
 
-message("Annähernd repräsentative Stichprobe (n = 2000) erstellt und gespeichert.")
+message(paste("Annähernd repräsentative Stichprobe (n = ", sample_size, ") erstellt und gespeichert."))
 
