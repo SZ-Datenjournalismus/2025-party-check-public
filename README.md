@@ -1,10 +1,12 @@
 ---
----
+title: "Party Check – Umfragedaten zu Wahlverhalten und Meinungen in der Bevölkerung"
+author: "Sören Müller-Hansen, Philipp Thomeczek"
+date: "August 2025"
 ---
 
 ![](input/logo_party_check_small.png)
 
-# Party Check – Umfragedaten zu Wahlverhalten und Meinungen in der Bevölkerung
+# Das Projekt Party Check
 
 Party Check ist ein politikwissenschaftliches Projekt, das kurz vor größeren Wahlen in Deutschland (Bundestagswahl, Landtagswahlen, Europawahl) die Stimmung der Bevölkerung zu relevanten politischen Fragen erfasst. Der Fragebogen ist unter [party-check.org](https://party-check.org) erreichbar. Zusätzlich werden Wahlpräferenzen und soziodemographische Faktoren abgefragt. Eine detaillierte Beschreibung der Befragung zur Bundestagswahl 2025 [findet sich auf der Seite der Uni Potsdam](#0). Betreut wird das Projekt von Sören Müller-Hansen (Süddeutsche Zeitung) und Philipp Thomeczek (Universität Potsdam). In diesem Repository wird beispielhafter Code zur Verfügung gestellt, um auf Basis der Daten aus Party Check eigene Analysen durchzuführen. Die Daten und der hier zur Verfügung gestellte Code können unter Berücksichtigung der Open-Source-Lizenz frei verwendet werden.
 
@@ -25,6 +27,12 @@ Party Check ist keine repräsentative Befragung. Die User:innen nutzen das Tool 
 ## Datenzugang
 
 Langfristig sollen die Befragungsergebnisse vergangener Wahlen im Harvard Dataverse zur Verfügung gestellt werden. Dort sind aktuell die Daten zur Europawahl 2024 bereits verfügbar : <https://doi.org/10.7910/DVN/7PBJS9>. Nehmt für aktuelle Projekte, insbesondere zu anstehenden Wahlen, bitte einfach Kontakt zu Philipp Thomeczek und Sören Müller-Hansen auf.
+
+## Codebook
+
+Um die Daten verstehen zu können, ist eine Übersetzung der Werte mit Hilfe eines Codebooks notwendig. Für die Daten zur Europawahl (Euro Party Check) ist das Codebook im Harvard Dataverse zu finden. Mit der Funktion `download_euro_party_check()` wird das Codebook auch lokal heruntergeladen. Beispielhafter Code findet sich im Skript `example_analysis.R`.
+
+Eine mit KI erstellte maschinenlesbare Version des Codebooks ist in `input/codebook_eu_party_check.csv` zu finden. Vorsicht bei der Verwendung: Die Datei wurde nicht vollständig geprüft und könnte Fehler enthalten.
 
 ## Verwendung
 
@@ -62,3 +70,5 @@ Hier sind einige Projekte aufgelistet, in die Daten aus Party Check eingeflossen
 -   [Was die AfD stark macht, Wählermeinungen bei der Bundestagswahl 2025](https://www.sueddeutsche.de/projekte/artikel/politik/bundestagswahl-afd-daten-ost-west-e836369/) (SZ)
 
 -   [Warum die Jungen beim Wählen so gespalten sind, Wählermeinungen bei der Bundestagswahl 2025](https://www.sueddeutsche.de/projekte/artikel/politik/bundestagswahl-2025-junge-waehler-afd-die-linke-e258960/) (SZ)
+
+## Ausblick
