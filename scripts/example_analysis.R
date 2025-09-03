@@ -116,3 +116,25 @@ calculate_pc_stats(pc_data_long %>%
   arrange(item, urbanrurallive) %>%
   view()
 
+# alternative Gewichtung z.B. nach repräsentativer Wahlstatistik
+eu_wahlstatistik <- read_csv2("https://www.bundeswahlleiterin.de/dam/jcr/94c9a6f3-37aa-448d-9f52-afb592d8cf7a/ew24_rws_est2.csv",
+                              skip = 11)
+eu_wahlbeteiligung <- read_csv2("https://www.bundeswahlleiterin.de/dam/jcr/255d85ae-ef1f-4be3-9add-ef24bbbaaf4e/ew24_rws_ew2.csv",
+                                skip = 11)
+# wir wählen nur die wichtigsten Parteien > 2 % aus
+eu_wahlstatistik_selected <- eu_wahlstatistik %>%
+  # CDU und CSU aufsummieren
+  mutate("CDU/CSU" = sum(CDU, CSU, na.rm = TRUE)) %>%
+  pivot_longer(cols= -c(1:4), names_to = "party", values_to = "votes") %>%
+  mutate(pct = votes / Summe) %>%
+  filter(pct > 0.02,
+         !party %in% c("CDU", "CSU")) %>%
+  mutate(party = case_when(
+    party %in% c("GRÜNE", "DIE LINKE") ~ str_to_title(party),
+    party == "dar. BSW" ~ "BSW",
+    party == "dar. FREIE WÄHLER" ~ "Freie Wähler",
+    TRUE ~ party
+  ))
+
+# 
+

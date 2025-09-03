@@ -1,3 +1,7 @@
+---
+---
+---
+
 ![](input/logo_party_check_small.png)
 
 # Party Check – Umfragedaten zu Wahlverhalten und Meinungen in der Bevölkerung
@@ -20,7 +24,7 @@ Party Check ist keine repräsentative Befragung. Die User:innen nutzen das Tool 
 
 ## Datenzugang
 
-Langfristig sollen die Befragungsergebnisse vergangener Wahlen im Harvard Dataverse zur Verfügung gestellt werden. Dort sind aktuell die Daten zur Europawahl 2024 bereits verfügbar : https://doi.org/10.7910/DVN/7PBJS9. Nehmt für aktuelle Projekte, insbesondere zu anstehenden Wahlen, bitte einfach Kontakt zu Philipp Thomeczek und Sören Müller-Hansen auf.
+Langfristig sollen die Befragungsergebnisse vergangener Wahlen im Harvard Dataverse zur Verfügung gestellt werden. Dort sind aktuell die Daten zur Europawahl 2024 bereits verfügbar : <https://doi.org/10.7910/DVN/7PBJS9>. Nehmt für aktuelle Projekte, insbesondere zu anstehenden Wahlen, bitte einfach Kontakt zu Philipp Thomeczek und Sören Müller-Hansen auf.
 
 ## Verwendung
 
@@ -48,6 +52,8 @@ Alle Skripte liegen im Ordner `scripts/`. Rohdaten oder Metadaten, die für die 
 ## Beispielprojekte
 
 Hier sind einige Projekte aufgelistet, in die Daten aus Party Check eingeflossen sind. Viele der in der Süddeutschen Zeitung erschienen Artikel sind nur mit einem Abo lesbar.
+
+-   [Thomeczek, JP, Wurthmann, LC & Stecker C (Forthcoming): Studying Party-Voter Congruence in the European Elections 2024: Introducing a New Dataset on German Voter Positions from the VAA “Europartycheck”. *European Union Politics*](eup_thomeczek_wurthmann_stecker.pdf) (Studie als PDF)
 
 -   [Deutschland rückt nach rechts, Parteipositionen bei der Bundestagswahl 2025](https://www.sueddeutsche.de/projekte/artikel/politik/deutschland-politische-ausrichtung-rechtsruck-analyse-e061293/) (SZ)
 
