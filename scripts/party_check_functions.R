@@ -175,3 +175,51 @@ recode_with_codebook <- function(df, column_name, codebook) {
   return(df)
 }
 
+#' Lädt Daten des Euro Party Check aus Harvard Dataverse herunter
+#'
+#' Diese Funktion lädt die Daten des Euro Party Check von Harvard Dataverse herunter und speichert sie lokal.
+#'
+#' @param doi Der DOI-Link zu den Euro Party Check-Daten auf Harvard Dataverse.
+#' @param destpath Der Pfad, wo die heruntergeladenen Daten gespeichert werden sollen. Standardmäßig "input/ignore/euro_party_check/".
+#' @param overwrite Logischer Wert, der angibt, ob vorhandene Dateien überschrieben werden sollen. Standardmäßig FALSE.
+#' 
+#' @return Der Pfad zum entpackten Ordner, der die heruntergeladenen Daten enthält.
+download_euro_party_check <- function(doi, destpath = here("input", "ignore", "euro_party_check"), overwrite = FALSE) {
+  
+  Sys.setenv("DATAVERSE_SERVER" = "dataverse.harvard.edu")
+  
+  # überprüfen, ob der Zielordner existiert, wenn nicht, erstellen
+  if (!dir.exists(destpath)) {
+    dir.create(destpath, recursive = TRUE)
+  }
+  
+  # Informationen über das Dataset abrufen
+  dataset_info <- get_dataset(doi)
+  
+  # alle Dateien im Dataset auflisten
+  files <- dataset_info$files
+  
+  # alle Dateien herunterladen
+  for (i in 1:nrow(files)) {
+    file_id <- files[i,]$id
+    file_name <- files[i,]$filename
+    
+    # herunterladen, wenn Datei nicht existiert oder überschrieben werden soll
+    if (file.exists(file.path(destpath, file_name)) && !overwrite) {
+      next
+    }
+    
+    message("Downloading ", file_name, " ...")
+    
+    # Datei herunterladen
+    writeBin(
+      object = get_file_by_id(file_id),
+      con = here(destpath, file_name)
+    )
+  }
+  
+  message("Daten erfolgreich heruntergeladen: ", destpath)
+  
+  return(destpath)
+}
+

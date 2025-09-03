@@ -25,7 +25,8 @@ p_load(
   survey, # Umfragen und Fragebögen
   roxygen2, # Dokumentation von Funktionen
   spatstat.geom, # Statistiken mit Gewichtungen
-  DatawRappr # Visualisierung in Datawrapper
+  DatawRappr, # Visualisierung in Datawrapper
+  dataverse # Zugriff auf Harvard Dataverse
 )
 
 # Hilfsfunktionen laden ####

@@ -3,6 +3,9 @@
 # Konfiguration laden ####
 source("scripts/config.R")
 
+# Daten des Euro Party Check herunterladen ####
+eupc_folder <- download_euro_party_check(doi = "10.7910/DVN/7PBJS9")
+
 # Gewichte für jede Gruppe auf Basis von Zensus-Daten berechnen ####
 source(here("scripts", "weight_data.R"))
 

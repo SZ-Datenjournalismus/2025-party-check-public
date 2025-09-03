@@ -99,9 +99,13 @@ set.seed(123) # für Reproduzierbarkeit
 
 # Umfragedaten einlesen und nach Zensus gewichten ####
 
+# Fehlermeldung, wenn Daten nicht heruntergeladen sind
+if (!file.exists(here(eupc_folder, "europartycheck_data_unweighted.tab"))) {
+  stop("Die Datei europartycheck_data_unweighted.tab wurde nicht gefunden. Lade die Datei mit der Funktion download_euro_party_check() herunter.")
+}
+
 ## Umfragedaten einlesen ####
-# TODO Link zu Daten im Harvard Dataverse einsetzen
-pc_data_raw <- read_csv(here("input", "ignore", "datasets_eup", "vaa data", "data_unweighted.csv"), locale = locale(encoding = "UTF-8")) %>%
+pc_data_raw <- read_csv(here(eupc_folder, "europartycheck_data_unweighted.tab"), locale = locale(encoding = "UTF-8")) %>%
   # ID für späteres Zusammenführen erstellen
   mutate(id = row_number()) %>%
   # leere Antworten zu NA umwandeln
