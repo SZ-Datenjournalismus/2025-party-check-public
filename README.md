@@ -51,7 +51,7 @@ Die hier angebotenen Skripte sind in R geschrieben. Um sie auszuführen, müsst 
 
 -   `calculate_quota_sample.R`: Hier wird eine Stichprobe (n = 2000) aus dem Gesamtdatensatz gezogen, der die Bevölkerungsstruktur nach Alter, Geschlecht, Bildung und Region besser abbildet.
 
--   `example_analysis.R`: Beispielanalyse von Daten aus Party Check. `config.R` und `party_check_functions.R` werden in diesem Skript bereits geladen.
+-   `example_analysis.Rmd`: Beispielanalyse von Daten aus Party Check. `config.R` und `party_check_functions.R` werden in diesem Skript bereits geladen.
 
 ### Ordnerstruktur
 
@@ -72,3 +72,13 @@ Hier sind einige Projekte aufgelistet, in die Daten aus Party Check eingeflossen
 -   [Warum die Jungen beim Wählen so gespalten sind, Wählermeinungen bei der Bundestagswahl 2025](https://www.sueddeutsche.de/projekte/artikel/politik/bundestagswahl-2025-junge-waehler-afd-die-linke-e258960/) (SZ)
 
 ## Ausblick
+
+2026 finden voraussichtlich fünf Landtagswahlen statt (Baden-Württemberg, Rheinland-Pfalz, Sachsen-Anhalt, Berlin, Mecklenburg-Vorpommern), 2027 auch (Saarland, Bremen, Schleswig-Holstein, Nordrhein-Westfalen, Niedersachsen). Unser Ziel ist es, für jede dieser Wahlen Party Check aufzusetzen: Positionen der Parteien zu relevanten Fragestellungen von Expert:innen bestimmen lassen, die Online-Wahlhilfe Party Check anbieten und User:innen die Möglichkeit geben, ihre Übereinstimmung mit den Parteien zu ermitteln und dabei freiwillige Daten für die Wissenschaft und den Datenjournalismus zu erheben.
+
+Ihr könnt euch gerne einbringen, nehmt dazu einfach Kontakt zu uns auf. Ihr könnt:
+
+-   Im Vorfeld der Wahlen eure Expertise einbringen, welche Fragestellungen für bestimmte Bundesländer besonders relevant sind.
+
+-   Bei der Verbreitung des Tools helfen. Je mehr Menschen es nutzen, desto umfangreicher sind auch die gewonnenen Daten.
+
+-   Rund um die Wahl mit den Rohdaten arbeiten und eigene Analysen machen.

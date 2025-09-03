@@ -78,27 +78,27 @@ pc_stats_df <- calculate_pc_stats(df = pc_data_long,
                                   sociodemography_list = c("gender", "bundesland", "age"), 
                                   with_weights = TRUE)
 
-# nach Parteipräferenz (Wahlabsicht 2025)
+## nach Parteipräferenz (Wahlabsicht 2025) ####
 calculate_pc_stats(pc_data_long,
                    items_list = c("lrgen", "econinterven", "immigratepolicy", "environment", "protectionism"),
                    sociodemography_list = c("votint"),
                    with_weights = TRUE) %>%
   view()
-# nach Parteipräferenz (Wahlabsicht 2025) und Wahlentscheidung BTW21
+## nach Parteipräferenz (Wahlabsicht 2025) und Wahlentscheidung BTW21 ####
 calculate_pc_stats(pc_data_long,
                    items_list = c("lrgen", "econinterven", "immigratepolicy", "environment", "protectionism"),
                    sociodemography_list = c("votint", "recall"),
                    with_weights = TRUE) %>%
   filter(n >= 20) %>%
   view()
-# nach Alter und Parteipräferenz (Wahlabsicht 2025)
+## nach Alter und Parteipräferenz (Wahlabsicht 2025) ####
 calculate_pc_stats(pc_data_long,
                    items_list = c("lrgen", "econinterven", "immigratepolicy", "environment", "protectionism"),
                    sociodemography_list = c("age", "votint"),
                    with_weights = TRUE) %>%
   view()
 
-# nach Alter (grob jung und alt) und Parteipräferenz (Wahlabsicht 2025)
+## nach Alter (grob jung und alt) und Parteipräferenz (Wahlabsicht 2025) ####
 calculate_pc_stats(pc_data_long %>%
                      mutate(age = case_when(age %in% (eupc_codebook %>% filter(item == "age") %>% mutate(value = as.integer(value)) %>% filter(value < 5 | value == 98) %>% pull(text)) ~ "unter 30 Jahre",
                                             age %in% (eupc_codebook %>% filter(item == "age") %>% mutate(value = as.integer(value)) %>% filter(value > 10, value < 98) %>% pull(text)) ~ "über 60 Jahre",
@@ -109,7 +109,7 @@ calculate_pc_stats(pc_data_long %>%
   arrange(item, factor(age, levels = c("unter 30 Jahre", "30 bis 59 Jahre", "über 60 Jahre"))) %>%
   view()
 
-# nach Stadt/Land (Wahlabsicht 2025)
+## nach Stadt/Land (Wahlabsicht 2025) ####
 calculate_pc_stats(pc_data_long %>%
                      mutate(urbanrurallive = case_when(urbanrurallive %in% (eupc_codebook %>% filter(item == "urbanrurallive") %>% mutate(value = as.integer(value)) %>% filter(value <= 3) %>% pull(text)) ~ "Stadt",
                                                        urbanrurallive %in% (eupc_codebook %>% filter(item == "urbanrurallive") %>% mutate(value = as.integer(value)) %>% filter(value > 3) %>% pull(text)) ~ "Land")),
@@ -119,25 +119,4 @@ calculate_pc_stats(pc_data_long %>%
   arrange(item, urbanrurallive) %>%
   view()
 
-# alternative Gewichtung z.B. nach repräsentativer Wahlstatistik
-eu_wahlstatistik <- read_csv2("https://www.bundeswahlleiterin.de/dam/jcr/94c9a6f3-37aa-448d-9f52-afb592d8cf7a/ew24_rws_est2.csv",
-                              skip = 11)
-eu_wahlbeteiligung <- read_csv2("https://www.bundeswahlleiterin.de/dam/jcr/255d85ae-ef1f-4be3-9add-ef24bbbaaf4e/ew24_rws_ew2.csv",
-                                skip = 11)
-# wir wählen nur die wichtigsten Parteien > 2 % aus
-eu_wahlstatistik_selected <- eu_wahlstatistik %>%
-  # CDU und CSU aufsummieren
-  mutate("CDU/CSU" = sum(CDU, CSU, na.rm = TRUE)) %>%
-  pivot_longer(cols= -c(1:4), names_to = "party", values_to = "votes") %>%
-  mutate(pct = votes / Summe) %>%
-  filter(pct > 0.02,
-         !party %in% c("CDU", "CSU")) %>%
-  mutate(party = case_when(
-    party %in% c("GRÜNE", "DIE LINKE") ~ str_to_title(party),
-    party == "dar. BSW" ~ "BSW",
-    party == "dar. FREIE WÄHLER" ~ "Freie Wähler",
-    TRUE ~ party
-  ))
-
-# 
 
