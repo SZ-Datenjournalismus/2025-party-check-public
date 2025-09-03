@@ -13,9 +13,9 @@ source("scripts/config.R")
 set.seed(123456) # für Reproduzierbarkeit
 
 # Daten einlesen und vorbereiten ####
-pc_data_weights <- read_csv(here("input", "party_check_data_weights_per_group.csv"), locale = locale(encoding = "UTF-8"))
+pc_data_weights <- read_csv(here("input", "ignore", "party_check_data_weights_per_group.csv"), locale = locale(encoding = "UTF-8"))
 
-pc_data <- read_csv(here("input", "party_check_data_weighted.csv"), locale = locale(encoding = "UTF-8")) %>%
+pc_data <- read_csv(here("input", "ignore", "party_check_data_weighted.csv"), locale = locale(encoding = "UTF-8")) %>%
   select(-w, -age)  # nicht benötigte Spalten entfernen
 
 # Datensätze zusammenführen
@@ -80,7 +80,7 @@ weights_df <- tibble(
 )
 
 # Gewichte mit Originaldaten zusammenführen ####
-pc_data_quota_sample <- read_csv(here("input", "party_check_data_weighted.csv"), locale = locale(encoding = "UTF-8")) %>%
+pc_data_quota_sample <- read_csv(here("input", "ignore", "party_check_data_weighted.csv"), locale = locale(encoding = "UTF-8")) %>%
   select(-w) %>%
   left_join(weights_df, by = "id") %>%
   filter(!is.na(w)) %>%
@@ -90,7 +90,7 @@ pc_data_quota_sample <- read_csv(here("input", "party_check_data_weighted.csv"),
 print(table(pc_data_quota_sample$votinteu))
 
 # Gewichtete Daten speichern ####
-write_csv(pc_data_quota_sample, here("input", "party_check_data_quota_weighted.csv"))
+write_csv(pc_data_quota_sample, here("input", "ignore", "party_check_data_quota_weighted.csv"))
 
 message(paste("Annähernd repräsentative Stichprobe (n = ", sample_size, ") erstellt und gespeichert."))
 

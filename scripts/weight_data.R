@@ -237,7 +237,7 @@ cat("Summe der Gewichte:", sum(weights_df$w), "(sollte der Stichprobengröße en
 write_csv(eurostat_census_weights, here("input", "eurostat_census_de_2024_weights.csv"))
 pc_weight_data_export <- pc_weight_data %>%
   bind_cols(w = weights(pc_data_r))
-write_csv(pc_weight_data_export, here("input", "party_check_data_weights_per_group.csv"))
+write_csv(pc_weight_data_export, here("input", "ignore", "party_check_data_weights_per_group.csv"))
 
 ## Gewichte mit Originaldaten zusammenführen ####
 pc_data_final <- pc_data_raw %>%
@@ -245,7 +245,7 @@ pc_data_final <- pc_data_raw %>%
   filter(!is.na(w))
 
 # Gewichtete Daten speichern
-write_csv(pc_data_final, here("input", "party_check_data_weighted.csv"))
+write_csv(pc_data_final, here("input", "ignore", "party_check_data_weighted.csv"))
 
 message("Gewichtete Daten wurden erfolgreich berechnet und gespeichert.")
 
