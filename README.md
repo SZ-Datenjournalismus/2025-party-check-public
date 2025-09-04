@@ -77,6 +77,8 @@ Hier sind einige Projekte aufgelistet, in die Daten aus Party Check eingeflossen
 
 -   [Warum die Jungen beim Wählen so gespalten sind, Wählermeinungen bei der Bundestagswahl 2025](https://www.sueddeutsche.de/projekte/artikel/politik/bundestagswahl-2025-junge-waehler-afd-die-linke-e258960/) (SZ)
 
+-   [Junge Wählerinnen und Wähler vor der Bundestagswahl 2025](https://www.sueddeutsche.de/politik/bundestagswahl-jungwaehler-jugend-afd-li.3175931) (SZ)
+
 ## Ausblick
 
 2026 finden voraussichtlich fünf Landtagswahlen statt (Baden-Württemberg, Rheinland-Pfalz, Sachsen-Anhalt, Berlin, Mecklenburg-Vorpommern), 2027 auch (Saarland, Bremen, Schleswig-Holstein, Nordrhein-Westfalen, Niedersachsen). Unser Ziel ist es, für jede dieser Wahlen Party Check aufzusetzen: Positionen der Parteien zu relevanten Fragestellungen von Expert:innen bestimmen lassen, die Online-Wahlhilfe Party Check anbieten und User:innen die Möglichkeit geben, ihre Übereinstimmung mit den Parteien zu ermitteln und dabei freiwillige Daten für die Wissenschaft und den Datenjournalismus zu erheben.

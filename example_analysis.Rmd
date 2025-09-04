@@ -30,6 +30,9 @@ source(here("scripts", "calculate_quota_sample.R"))
 # Codebook laden ####
 # Vorsicht, Codebook wurde mit Hilfe von KI erstellt und nicht vollständig geprüft!
 eupc_codebook <- read_csv(here("input", "codebook_eu_party_check.csv"))
+
+# Parteifarben definieren
+party_colors <- c("AfD" = "#209fc9","CDU/CSU" = "#333333", "CDU" = "#333333", "CSU" = "#333333", "FDP" = "#ffd324", "Grüne" = "#4daa65", "Die Linke" = "#d1478c", "Linke" = "#d1478c", "SPD" = "#f45151", "Freie Wähler" = "#ea8b0c", "FW" = "#ea8b0c", "BVB/FW" = "#ea8b0c", "BSW" = "#9671bc", "Volt" = "#893b96", "Sonstige" = "#A0A0A0")
 ```
 
 # Analyse
@@ -43,7 +46,7 @@ items <- c(
   "lrgen",                # generelle politische Orientierung
   "econinterven",         # Sollte der Staat in die Wirtschaft eingreifen?
   "environment",          # Umwelt- und Klimaschutz vor Wirtschaft?
-  "protectionism",       # Freihandel oder Protektionismus?
+  "protectionism",        # Freihandel oder Protektionismus?
   "redistribution",       # Soll der Staat umverteilen?
   "eucohesion",           # Soll die EU mehr Geld für ärmere Regionen ausgeben?
   "euenlargement",        # Soll die EU weiter wachsen?
@@ -271,21 +274,107 @@ calculate_pc_stats(pc_data_long_eu_weights,
   filter(n >= 20)
 ```
 
+### Sind bestimmte Themen jungen und alten Menschen unterschiedlich wichtig?
+
+```{r stats salience}
+pc_data_long_eu_weights %>%
+  mutate(age_group = case_when(
+    age_group %in% c("16-24 Jahre", "24-34 Jahre") ~ "unter 35",
+    TRUE ~ "über 35"
+  )) %>%
+  calculate_pc_stats(items_list = pc_data_long_eu_weights %>% filter(str_starts(item, "sal"), !str_detect(item, "eu")) %>% pull(item) %>% unique(),
+                     sociodemography_list = "age_group",
+                     with_weights = TRUE,
+                     weight_column = "weight_age_group") %>%
+  select(item, age_group, mean_weighted) %>%
+  pivot_wider(names_from = age_group, values_from = mean_weighted) %>%
+  arrange(desc(`unter 35`)) %>%
+  mutate(difference = `unter 35` - `über 35`,
+         across(2:4, ~ round(., 1)))
+```
+
 # Visualisierung
 
-TODO
+## Wie unterschiedlich Männer und Frauen Zuwanderung betrachten (Density Plot)
 
-## Linting
+```{r immigratepolicy gender}
+density_plot <- ggplot(pc_data_long_eu_weights %>%
+         filter(item == "immigratepolicy",
+                gender %in% c("Woman", "Man")) %>%
+         drop_na(value) %>%
+         mutate(value = as.numeric(value)), aes(x = value, weight = weight_age_group, fill = gender)) +
+  geom_density(alpha = 0.5) +
+  facet_wrap(~ age_group) +
+  labs(
+    title = "Gewichtete Verteilung nach Altersgruppe und Wahlabsicht",
+    x = "Wert (1-11)",
+    y = "Dichte",
+    fill = "Geschlecht"
+  ) +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set1") +
+  # x-Achse von 1 bis 11
+  scale_x_continuous(breaks = 1:11, limits = c(1, 11))
 
-The code in this RMarkdown is linted with the [lintr package](https://github.com/jimhester/lintr), which is based on the [tidyverse style guide](http://style.tidyverse.org/).
+# Daten für Visualisierung in anderem Tool extrahieren
+# ggplot_build(density_plot)$data[[1]] %>%
+#   dplyr::select(x, y, PANEL, group, ymax) %>%
+#   mutate(age_gender = case_when(PANEL == 1 & group == 1 ~ "Mann, U25",
+#                                 PANEL == 1 & group == 2 ~ "Frau, U25",
+#                                 PANEL == 6 & group == 1 ~ "Mann, Ü70",
+#                                 PANEL == 6 & group == 2 ~ "Frau, Ü70"),
+#          ymax = ymax * 100) %>%
+#   dplyr::select(x, age_gender, ymax) %>%
+#   as_tibble() %>%
+#   filter(age_gender %in% c("Mann, U25", "Frau, U25")) %>%
+#   pivot_wider(names_from = age_gender, values_from = ymax)
 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-lintr::lint("example_analysis.Rmd", linters =
-              lintr::with_defaults(
-                commented_code_linter = NULL,
-                trailing_whitespace_linter = NULL
-                )
-            )
-# if you have additional scripts and want them to be linted too, add them here
-# lintr::lint("scripts/my_script.R")
+# density plot zeigen
+print(density_plot)
+```
+
+## Klimaschutz oder Wirtschaft? Altersgruppen und Parteien im Vergleich
+
+```{r environment age group votinteu}
+environment_plot <- ggplot(pc_data_long_eu_weights %>%
+         filter(item == "environment",
+                votinteu %in% c("CDU/CSU", "AfD", "SPD", "Grüne", "Die Linke")) %>%
+         drop_na(value) %>%
+         mutate(value = as.numeric(value)), aes(x = value, weight = weight_age_group, fill = votinteu)) +
+  geom_density(alpha = 0.5) +
+  facet_wrap(~ age_group) +
+  labs(
+    title = "Gewichtete Verteilung nach Altersgruppe und Wahlabsicht",
+    x = "Wert (1-11)",
+    y = "Dichte",
+    fill = "Wahlabsicht"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = party_colors) +
+  # x-Achse von 1 bis 11
+  scale_x_continuous(breaks = 1:11, limits = c(1, 11))
+
+print(environment_plot)
+```
+
+## Wie unterschiedlich Parteianhänger:innen zur Marktwirtschaft stehen
+
+Große staatliche Eingriffe in die Wirtschaft oder freie Marktwirtschaft?
+
+```{r econinterven votinteu}
+pc_data_long_eu_weights %>%
+  filter(item == "econinterven",
+         votinteu %in% c("CDU/CSU", "AfD", "SPD", "Grüne", "BSW", "FDP", "Die Linke")) %>%
+  drop_na(votinteu) %>%
+  mutate(value = as.numeric(value)) %>%
+  ggplot(aes(x = value, y = votinteu, fill = votinteu, color = votinteu)) +
+  geom_violin(scale = "area", drop = FALSE) +
+  theme(axis.text.x = element_blank()) +
+  labs(title = "Euro Party Check",
+       x = "econinterven",
+       y = "") +
+  scale_fill_manual(values = party_colors) +
+  scale_color_manual(values = party_colors) +
+  scale_y_discrete(limits = c("AfD", "CDU/CSU", "BSW", "FDP", "SPD", "Grüne", "Die Linke") %>% rev()) +
+  theme_minimal()
 ```
