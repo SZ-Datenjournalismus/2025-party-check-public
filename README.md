@@ -28,7 +28,7 @@ Party Check wurde bereits erfolgreich bei der Europawahl 2024 (60 000 User:inne
 
 ## Repräsentativität der Daten
 
-Party Check ist keine repräsentative Befragung. Ebenso ist es keine Zufallsstichprobe: Alle, die einen Link zum Tool haben, können und sollen es natürlich nutzen. Die User:innen nutzen das Tool freiwillig, auch die Angabe soziodemographischer Daten ist freiwillig. Das muss bei der Nutzung des Datensatzes beachtet werden. Traditionell sind beispielsweise Höhergebildete, Politikinteressierte und Wähler:innen überrepräsentiert. Sicherlich sind die Daten nicht für "Horse Race" Prognosen á la "Wie viele Stimmen erhält Partei X bei der nächsten Wahl?" geeignet. Ein Vergleich mit Daten aus repräsentativen Stichproben zeigt aber, dass VAA-Daten zu sehr ähnlichen Rückschlüssen kommen (z.B. Was sind die Themen, die Wähler:innen zu bestimmten Parteien treiben?), vor allem, wenn man sie gewichtet [(siehe z.B. dieses Paper)](linkinghub.elsevier.com/retrieve/pii/S0261379421001190). Zusätzlich gibt es Möglichkeiten, die Datenqualität durch eine Gewichtung, etwa nach Parteipräferenz oder mit der Bevölkerungsstruktur aus dem Zensus, zu verbessern. Beispiele dazu finden sich im bereitgestellten Code.
+Party Check ist keine repräsentative Befragung. Ebenso ist es keine Zufallsstichprobe: Alle, die einen Link zum Tool haben, können und sollen es natürlich nutzen. Die User:innen nutzen das Tool freiwillig, auch die Angabe soziodemographischer Daten ist freiwillig. Das muss bei der Nutzung des Datensatzes beachtet werden. Traditionell sind beispielsweise Höhergebildete, Politikinteressierte und Wähler:innen überrepräsentiert. Sicherlich sind die Daten nicht für "Horse Race" Prognosen á la "Wie viele Stimmen erhält Partei X bei der nächsten Wahl?" geeignet. Ein Vergleich mit Daten aus repräsentativen Stichproben zeigt aber, dass VAA-Daten zu sehr ähnlichen Rückschlüssen kommen (z.B. Was sind die Themen, die Wähler:innen zu bestimmten Parteien treiben?), vor allem, wenn man sie gewichtet [(siehe z.B. dieses Paper)](linkinghub.elsevier.com/retrieve/pii/S0261379421001190). Im bereitgestellten Code finden sich auch Scripte zur Gewichtung und wie auf Basis der Gewichte eine quotierte Stichprobe, die der deutschen Bevölkerungsstruktur ähnlicher ist, gezogen werden kann.
 
 ## Datenzugang
 
@@ -67,7 +67,7 @@ Alle Skripte liegen im Ordner `scripts/`. Rohdaten oder Metadaten, die für die 
 
 Hier sind einige Projekte aufgelistet, in die Daten aus Party Check eingeflossen sind. Viele der in der Süddeutschen Zeitung erschienen Artikel sind nur mit einem Abo lesbar.
 
--   [Thomeczek, JP, Wurthmann, LC & Stecker C (Forthcoming): Studying Party-Voter Congruence in the European Elections 2024: Introducing a New Dataset on German Voter Positions from the VAA “Europartycheck”. *European Union Politics*](eup_thomeczek_wurthmann_stecker.pdf) (Studie als PDF)
+-   Einführendes Paper zu den Daten: [Thomeczek, JP, Wurthmann, LC & Stecker C (Forthcoming): Studying Party-Voter Congruence in the European Elections 2024: Introducing a New Dataset on German Voter Positions from the VAA “Europartycheck”. *European Union Politics*](eup_thomeczek_wurthmann_stecker.pdf) (Studie als PDF)
 
 -   [Deutschland rückt nach rechts, Parteipositionen bei der Bundestagswahl 2025](https://www.sueddeutsche.de/projekte/artikel/politik/deutschland-politische-ausrichtung-rechtsruck-analyse-e061293/) (SZ)
 
@@ -85,8 +85,8 @@ Hier sind einige Projekte aufgelistet, in die Daten aus Party Check eingeflossen
 
 Ihr könnt euch gerne einbringen, nehmt dazu einfach Kontakt zu uns auf. Ihr könnt:
 
--   Im Vorfeld der Wahlen eure Expertise einbringen, welche Fragestellungen für bestimmte Bundesländer besonders relevant sind.
+-   Im Vorfeld der Wahlen eure Expertise einbringen, welche Fragestellungen für bestimmte Bundesländer besonders relevant sind und auch selbst Fragen für den Zusatzfragebogen vorschlagen.
 
 -   Bei der Verbreitung des Tools helfen. Je mehr Menschen es nutzen, desto umfangreicher sind auch die gewonnenen Daten.
 
--   Rund um die Wahl mit den Rohdaten arbeiten und eigene Analysen machen.
+-   Rund um die Wahl mit den Rohdaten arbeiten und eigene Analysen machen. So könnt ihr zu einer qualitativ hochwertigen Berichterstattung jenseits der Fokussierung auf reine Zustimmungswerte bei der Sonntagsfrage beitragen.
