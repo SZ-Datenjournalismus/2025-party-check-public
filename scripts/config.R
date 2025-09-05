@@ -26,7 +26,8 @@ p_load(
   roxygen2, # Dokumentation von Funktionen
   spatstat.geom, # Statistiken mit Gewichtungen
   DatawRappr, # Visualisierung in Datawrapper
-  dataverse # Zugriff auf Harvard Dataverse
+  dataverse, # Zugriff auf Harvard Dataverse
+  scales # Skalierung von Werten
 )
 
 # Hilfsfunktionen laden ####

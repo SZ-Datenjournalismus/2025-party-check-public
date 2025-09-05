@@ -295,6 +295,25 @@ pc_data_long_eu_weights %>%
 
 # Visualisierung
 
+## Klima/Wirtschaft nach Wahlabsicht (Europawahl 2024)
+
+```{r votinteu viz}
+calculate_pc_stats(pc_data_long,
+                   items_list = c("environment"),
+                   sociodemography_list = c("votinteu"),
+                   with_weights = TRUE) %>% filter(n >= 100) %>%
+  select(votinteu, mean_weighted) %>%
+  mutate(mean_weighted = scales::rescale(mean_weighted, from = c(1,11), to = c(0,10))) %>%
+  ggplot(aes(x = mean_weighted, y = votinteu)) +
+  geom_col(aes(fill = votinteu), show.legend = FALSE) +
+  scale_fill_manual(values = party_colors) +
+  scale_x_continuous(breaks = seq(0, 10, by = 1), limits = c(0, 10)) +
+  labs(title = "Gewichtete Verteilung der Einstellung zu Umwelt- und Klimaschutz",
+       x = "Wert (1-11)",
+       y = "Wahlabsicht Europawahl 2024") +
+  theme_minimal()
+```
+
 ## Wie unterschiedlich Männer und Frauen Zuwanderung betrachten (Density Plot)
 
 ```{r immigratepolicy gender}
