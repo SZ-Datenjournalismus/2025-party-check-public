@@ -15,6 +15,7 @@ This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 In
 # Das Projekt Party Check
 
 Party Check ist ein politikwissenschaftliches Projekt, das kurz vor größeren Wahlen in Deutschland die Stimmung der Bevölkerung zu relevanten politischen Fragen erfasst. Es ist eine Online-Wahlhilfe, die in der englischsprachigen Forschung auch als "Voting Advice Applications" (VAAs) bekannt sind. Das Tool zur Bundestagswahl 2025 inkl. Fragebogen ist unter [party-check.org](https://party-check.org) erreichbar. Zusätzlich werden Wahlpräferenzen und soziodemographische Faktoren abgefragt. Eine detaillierte Beschreibung der Befragung zur Bundestagswahl 2025 [findet sich auf der Seite der Uni Potsdam](%5B#0%5D(https://www.uni-potsdam.de/de/vergleichende-politikwissenschaft/team/dr-jan-philipp-thomeczek/party-check)). Betreut wird das Projekt von Sören Müller-Hansen (Süddeutsche Zeitung) und Philipp Thomeczek (Universität Potsdam), zu den jeweiligen Wahlen sind teils weitere Kolleg:innen beteiligt. Der Party-Check soll im nächsten Jahr auch zu den Landtagswahlen angeboten werden. In diesem Repository wird beispielhafter Code zur Verfügung gestellt, um auf Basis der Daten aus Party Check eigene Analysen durchzuführen. Die Daten und der hier zur Verfügung gestellte Code können unter Berücksichtigung der folgenden Open-Source-Lizenz frei verwendet werden.
+Ein weiteres, aktuelles Projekt ist der [Populismus-Selbsttest](https://politiktest.de/).
 
 -   Nutzungsrecht: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
 
