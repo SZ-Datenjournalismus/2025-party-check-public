@@ -68,7 +68,7 @@ Alle Skripte liegen im Ordner `scripts/`. Rohdaten oder Metadaten, die für die 
 
 Hier sind einige Projekte aufgelistet, in die Daten aus Party Check eingeflossen sind. Viele der in der Süddeutschen Zeitung erschienen Artikel sind nur mit einem Abo lesbar.
 
--   Einführendes Paper zu den Daten: [Thomeczek, JP, Wurthmann, LC & Stecker C (2025): Studying Party-Voter Congruence in the European Elections 2024: Introducing a New Dataset on German Voter Positions from the VAA “Europartycheck”. *European Union Politics*](https://journals.sagepub.com/doi/abs/10.1177/14651165251395306) (Studie als PDF)
+-   Einführendes Paper zu den Daten: [Thomeczek, JP, Wurthmann, LC & Stecker C (2025): Studying Party-Voter Congruence in the European Elections 2024: Introducing a New Dataset on German Voter Positions from the VAA “Europartycheck”. *European Union Politics*](https://www.researchgate.net/publication/397925679_Studying_party-voter_congruence_in_the_European_elections_2024_Introducing_a_new_dataset_on_German_voter_positions_from_the_VAA_'Europartycheck') (Studie als PDF)
 
 -   [Deutschland rückt nach rechts, Parteipositionen bei der Bundestagswahl 2025](https://www.sueddeutsche.de/projekte/artikel/politik/deutschland-politische-ausrichtung-rechtsruck-analyse-e061293/) (SZ)
 
