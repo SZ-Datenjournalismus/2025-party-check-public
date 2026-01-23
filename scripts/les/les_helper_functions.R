@@ -83,13 +83,63 @@ les_wide_to_long <- function(df, regions = c("bund", "bw", "by", "be", "bb", "hb
 #' @param df A dataframe in LES long format (e.g., les_results_long)
 #' @param items_list A vector of item names for which statistics should be calculated.
 #' @param min_n Minimum number of responses per group to include in the output (default: 1).
+#' @param expert_choices Optional: Dataframe with expert choices (id, state, party, policyfield).
+#' @param items_policyfields Optional: Dataframe mapping items to policyfields.
+#' @param min_completion Optional: Minimum share (0-1) of items an expert must have answered (default: NULL = no filter).
+#' @param respondent_id_col Name of respondent id column (default: "id").
 #'
 #' @return Dataframe with summary statistics for each item/party/region combination.
-les_calculate_stats <- function(df, items_list, min_n = 1) {
-  required_cols <- c("item", "party", "region", "value")
+#' @examples
+#' les_calculate_stats(df_clean, items_list = c("item1", "item2"), min_n = 5)
+les_calculate_stats <- function(
+  df, items_list, min_n = 1,
+  expert_choices = NULL, items_policyfields = NULL, min_completion = NULL,
+  respondent_id_col = "id"
+) {
+  required_cols <- c("item", "party", "region", "value", respondent_id_col)
   missing_cols <- setdiff(required_cols, names(df))
   if (length(missing_cols) > 0) {
     stop(paste("Folgende Spalten fehlen im Dataframe:", paste(missing_cols, collapse = ", ")))
+  }
+
+  # Filter respondents by completion if requested
+  if (!is.null(min_completion) && !is.null(expert_choices) && !is.null(items_policyfields)) {
+      # get expected items per respondent/party/region
+      expected_items <- expert_choices %>%
+        left_join(items_policyfields, relationship = "many-to-many", by = "policyfield_var") %>%
+        dplyr::select(id, state_var, party_var, item, expected = all_selected)
+      # add expected items for federal level
+      expected_items <- expected_items %>%
+        bind_rows(
+          expected_items %>%
+          mutate(state_var = "bund") %>%
+          distinct()
+        )
+      # count expected items per respondent
+      expected_counts <- expected_items %>%
+        group_by(id) %>%
+        summarise(n_expected = sum(expected, na.rm = TRUE), .groups = "drop")
+
+      # count answered items per respondent
+      answered_items <- df %>%
+        drop_na(value) %>%
+        left_join(items_policyfields, by = "item") %>%
+        group_by(id) %>%
+        summarise(n_answered = sum(!is.na(value)), .groups = "drop")
+
+      # calculate completion rate
+      completion <- answered_items %>%
+        left_join(expected_counts, by = "id") %>%
+        mutate(completion = ifelse(is.na(n_expected) | n_expected == 0, 0, n_answered / n_expected))
+
+      # filter respondents below min_completion
+      ids_below <- completion %>%
+        filter(!is.na(completion) & completion < min_completion) %>%
+        pull(id) %>%
+        unique()
+      
+      df <- df %>%
+        filter(!(.data[[respondent_id_col]] %in% ids_below))
   }
 
   selected_df <- df %>% select(item, party, region, value)
@@ -142,9 +192,15 @@ les_calculate_stats <- function(df, items_list, min_n = 1) {
 #' @param items_list Vector of item names to include (default: all items in df)
 #' @param min_n Minimum number of responses per group to include in the output (default: 1)
 #' @param respondent_id_col Name of respondent id column (default: "id")
+#' @param expert_choices Optional: Dataframe with expert choices (id, state, party, policyfield).
+#' @param items_policyfields Optional: Dataframe mapping items to policyfields.
+#' @param min_completion Optional: Minimum share (0-1) of items an expert must have answered (default: NULL = no filter).
 #'
 #' @return Dataframe with summary statistics for the difference per item/party/region
-les_compare_state_federal_stats <- function(df, regions, items_list = NULL, min_n = 1, respondent_id_col = "id") {
+les_compare_state_federal_stats <- function(
+  df, regions, items_list = NULL, min_n = 1, respondent_id_col = "id",
+  expert_choices = NULL, items_policyfields = NULL, min_completion = NULL
+) {
   required_cols <- c(respondent_id_col, "item", "party", "region", "value")
   missing_cols <- setdiff(required_cols, names(df))
   if (length(missing_cols) > 0) {
@@ -154,9 +210,44 @@ les_compare_state_federal_stats <- function(df, regions, items_list = NULL, min_
   df <- df %>%
     mutate(value = as.numeric(value))
 
-  # Filter for selected items if provided
-  if (!is.null(items_list)) {
-    df <- df %>% filter(item %in% items_list)
+  # Filter respondents by completion if requested
+  if (!is.null(min_completion) && !is.null(expert_choices) && !is.null(items_policyfields)) {
+      # get expected items per respondent/party/region
+      expected_items <- expert_choices %>%
+        left_join(items_policyfields, relationship = "many-to-many", by = "policyfield_var") %>%
+        dplyr::select(id, state_var, party_var, item, expected = all_selected)
+      # add expected items for federal level
+      expected_items <- expected_items %>%
+        bind_rows(
+          expected_items %>%
+          mutate(state_var = "bund") %>%
+          distinct()
+        )
+      # count expected items per respondent
+      expected_counts <- expected_items %>%
+        group_by(id) %>%
+        summarise(n_expected = sum(expected, na.rm = TRUE), .groups = "drop")
+
+      # count answered items per respondent
+      answered_items <- df %>%
+        drop_na(value) %>%
+        left_join(items_policyfields, by = "item") %>%
+        group_by(id) %>%
+        summarise(n_answered = sum(!is.na(value)), .groups = "drop")
+
+      # calculate completion rate
+      completion <- answered_items %>%
+        left_join(expected_counts, by = "id") %>%
+        mutate(completion = ifelse(is.na(n_expected) | n_expected == 0, 0, n_answered / n_expected))
+
+      # filter respondents below min_completion
+      ids_below <- completion %>%
+        filter(!is.na(completion) & completion < min_completion) %>%
+        pull(id) %>%
+        unique()
+      
+      df <- df %>%
+        filter(!(.data[[respondent_id_col]] %in% ids_below))
   }
 
   # For each respondent, party, item: get state and federal value, then diff

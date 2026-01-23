@@ -7,9 +7,9 @@
 # 0. Load packages and helper functions ####
 if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
 library(pacman)
-p_load(tidyverse, lubridate, here)
+p_load(tidyverse, lubridate, here, stringr)
 
-source(here("scripts", "ignore", "les_2026", "les_helper_functions.R"))
+source(here("scripts", "les", "les_helper_functions.R"))
 
 # 1. Load raw data ####
 
@@ -20,6 +20,49 @@ source(here("scripts", "ignore", "les_2026", "survey_814884_R_syntax_file.R"))
 les_results_raw <- data
 rm(data)
 
+# Helper function to extract expert choices
+extract_expert_choices <- function(df, prefix, var_name) {
+  lgl_col <- paste0(var_name, "_lgl")
+  les_results_raw %>%
+    dplyr::select(id, starts_with(prefix)) %>%
+    pivot_longer(!id, names_to = paste0(var_name, "_var"), values_to = var_name) %>%
+    distinct() %>%
+    mutate(
+      !!lgl_col := case_when(.data[[var_name]] == "Ja" ~ TRUE, TRUE ~ FALSE),
+      !!paste0(var_name, "_var") := str_extract(.data[[paste0(var_name, "_var")]], "(?<=_).*")
+    ) %>%
+    select(-all_of(var_name)) %>%
+    arrange(id)
+}
+
+# Identify for each expert, which states, parties, and policy fields they chose to evaluate
+states_experts <- extract_expert_choices(les_results_raw, "laender", "state")
+parties_experts <- extract_expert_choices(les_results_raw, "parties1", "party")
+policyfields_experts <- extract_expert_choices(les_results_raw, "policyfields", "policyfield")
+# add general policy field for each expert
+general_policies <- c("leftrightgeneral", "lrecon", "galtan")
+policyfields_experts <- policyfields_experts %>%
+  bind_rows(
+    policyfields_experts %>%
+      dplyr::select(id) %>%
+      distinct() %>%
+      mutate(
+        policyfield_var = "general",
+        policyfield_lgl = TRUE
+      )
+  )
+
+# combine expert choices into one dataframe
+expert_choices <- states_experts %>%
+  left_join(parties_experts, relationship = "many-to-many", by = "id") %>%
+  left_join(policyfields_experts, relationship = "many-to-many", by = "id") %>%
+  # calculate if all three dimensions were selected
+  mutate(all_selected = state_lgl & party_lgl & policyfield_lgl) %>%
+  # filter NA
+  drop_na() %>%
+  # drop not all selected
+  filter(all_selected)
+
 # 2. Clean data ####
 les_results_clean <- les_clean_raw_data(
   df = les_results_raw,
@@ -29,10 +72,32 @@ les_results_clean <- les_clean_raw_data(
 
 # 3. Convert wide to long format ####
 les_results_long <- les_wide_to_long(les_results_clean, regions = c("bund", "bw", "rp"))
-saveRDS(les_results_long, here("output", "ignore", "copilot", "les_results_long.rds"))
+
+# match items and policy fields
+items_policyfields <- les_results_long %>%
+  dplyr::select(item) %>%
+  distinct() %>%
+  mutate(policyfield_var = case_when(
+    item %in% general_policies ~ "general",
+    item %in% c("childcare", "communityschool", "schoolrecom") ~ "edu",
+    item %in% c("antielitism", "peopledecision") ~ "pop",
+    item %in% c("genderlanguage", "liberalism", "lawandorder") ~ "soc",
+    item %in% c("assimilation", "immigration", "asylumbenefit") ~ "mig",
+    item %in% c("publicdebt", "rentcontrol", "publicbroadcast") ~ "econ",
+    item %in% c("ukraine", "afdcoop", "stadtbild") ~ "deb",
+    item %in% c("renewenergy", "cars", "climatepolicy") ~ "clim"
+  ))
 
 # 4. Calculate general metrics ####
-les_metrics <- les_calculate_stats(les_results_long, items_list = unique(les_results_long$item), min_n = 5)
+les_metrics <- les_calculate_stats(
+  les_results_long,
+  items_list = unique(les_results_long$item),
+  min_n = 5,
+  expert_choices = expert_choices,
+  items_policyfields = items_policyfields,
+  min_completion = 0.5,
+  respondent_id_col = "id"
+)
 
 # 5. Calculate comparative metrics between state and federal level ####
 les_state_federal_diff <- les_compare_state_federal_stats(
@@ -40,7 +105,10 @@ les_state_federal_diff <- les_compare_state_federal_stats(
   regions = c("bw", "rp"),
   items_list = unique(les_results_long$item),
   min_n = 5,
-  respondent_id_col = "id"
+  respondent_id_col = "id",
+  expert_choices = expert_choices,
+  items_policyfields = items_policyfields,
+  min_completion = 0.5
 )
 
 # 6. Output summary of responses ####
