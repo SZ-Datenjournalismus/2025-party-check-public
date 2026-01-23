@@ -161,6 +161,12 @@ les_calculate_stats <- function(
         abs(mean - floor(median)) < abs(mean - ceiling(median)) ~ floor(median),
         TRUE ~ ceiling(median)
       ),
+      median_conservative = case_when(
+        median %% 1 == 0 ~ median,
+        median > 10.5 ~ floor(median),
+        median < 10.5 ~ ceiling(median),
+        TRUE ~ median_integer
+      ),
       sd = sd(value, na.rm = TRUE),
       lower_ci = quantile(x = value, probs = 0.025, na.rm = TRUE),
       upper_ci = quantile(x = value, probs = 0.975, na.rm = TRUE),
@@ -276,6 +282,12 @@ les_compare_state_federal_stats <- function(
         median %% 0.5 != 0 ~ round(median),
         abs(mean - floor(median)) < abs(mean - ceiling(median)) ~ floor(median),
         TRUE ~ ceiling(median)
+      ),
+      median_conservative = case_when(
+        median %% 1 == 0 ~ median,
+        median > 10.5 ~ floor(median),
+        median < 10.5 ~ ceiling(median),
+        TRUE ~ median_integer
       ),
       sd = sd(diff, na.rm = TRUE),
       lower_ci = quantile(diff, probs = 0.025, na.rm = TRUE),
