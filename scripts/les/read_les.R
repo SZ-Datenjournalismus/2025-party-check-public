@@ -159,3 +159,40 @@ ggplot(
   ) +
   theme_minimal(base_size = 12) +
   theme(axis.text.y = element_text(hjust = 1))
+
+# 8. Generate party check HTML table for Lime Survey ####
+# Read in existing party check data from HTML table
+current_party_check_data <- threadr::read_html_tables("les_median_05.html") %>%
+  distinct() %>%
+  filter(party != "party") %>%
+  # every column but party and bl is numeric
+  mutate(across(-c(party, bl), as.numeric))
+
+# Create new party check data from les_metrics
+new_party_check_data <- les_metrics %>%
+  filter(region != "bund") %>%
+  dplyr::select(party, bl = region, item, value = median) %>%
+  pivot_wider(names_from = item)
+  
+new_party_check_data <- current_party_check_data %>%
+  filter(!bl %in% unique(les_metrics$region)) %>%
+  bind_rows(new_party_check_data)
+
+# Convert new party check data to HTML table
+html <- paste0(
+  "<table>\n",
+  paste0(
+    "<tr>", paste0("<th>", names(new_party_check_data), "</th>", collapse = ""), "</tr>\n",
+    apply(new_party_check_data, 1, function(row)
+      paste0("<tr>", paste0("<td>", row, "</td>", collapse = ""), "</tr>\n")
+    ),
+    collapse = ""
+  ),
+  "</table>\n"
+)
+
+threadr::read_html_tables(html)
+
+# Write updated HTML table to file
+# TODO: Adjust file path as needed or replace manually
+writeLines(html, here("output", "ignore", "les_median_05.html"))
