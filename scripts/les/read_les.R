@@ -191,8 +191,6 @@ html <- paste0(
   "</table>\n"
 )
 
-threadr::read_html_tables(html)
-
 # Write updated HTML table to file
 # TODO: Adjust file path as needed or replace manually
 writeLines(html, here("output", "ignore", "les_median_05.html"))
