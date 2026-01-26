@@ -7,7 +7,9 @@
 # 0. Load packages and helper functions ####
 if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
 library(pacman)
-p_load(tidyverse, lubridate, here, stringr)
+if(!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
+if (!requireNamespace("threadr", quietly = TRUE)) remotes::install_github("skgrange/threadr")
+p_load(tidyverse, lubridate, here, stringr, threadr)
 
 source(here("scripts", "les", "les_helper_functions.R"))
 
