@@ -69,7 +69,8 @@ expert_choices <- states_experts %>%
 les_results_clean <- les_clean_raw_data(
   df = les_results_raw,
   startdate_of_survey = "2026-01-08",
-  cutoff_date = "2026-02-01"
+  cutoff_date = "2026-02-01",
+  min_survey_duration = 2
 )
 
 # 3. Convert wide to long format ####
@@ -94,10 +95,10 @@ items_policyfields <- les_results_long %>%
 les_metrics <- les_calculate_stats(
   les_results_long,
   items_list = unique(les_results_long$item),
-  min_n = 5,
+  min_n = 5, # adjust minimum n as needed
   expert_choices = expert_choices,
   items_policyfields = items_policyfields,
-  min_completion = 0.5,
+  min_completion = 0.01,
   respondent_id_col = "id"
 )
 
@@ -106,11 +107,11 @@ les_state_federal_diff <- les_compare_state_federal_stats(
   les_results_long,
   regions = c("bw", "rp"),
   items_list = unique(les_results_long$item),
-  min_n = 5,
+  min_n = 5, # adjust minimum n as needed
   respondent_id_col = "id",
   expert_choices = expert_choices,
   items_policyfields = items_policyfields,
-  min_completion = 0.5
+  min_completion = 0.01
 )
 
 # 6. Output summary of responses ####

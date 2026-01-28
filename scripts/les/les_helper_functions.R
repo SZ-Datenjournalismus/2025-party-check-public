@@ -8,20 +8,21 @@
 #' @param df Dataframe with raw LES data.
 #' @param startdate_of_survey Start date of the survey (format: "YYYY-MM-DD").
 #' @param cutoff_date Optional: End date of the survey (format: "YYYY-MM-DD").
+#' @param min_survey_duration Minimum duration of the survey in minutes (default: 3).
 #'
 #' @return Cleaned dataframe.
 #' @examples
 #' les_clean_raw_data(df = les_results_raw, startdate_of_survey = "2026-01-08", cutoff_date = "2026-02-01")
-les_clean_raw_data <- function(df, startdate_of_survey, cutoff_date = NULL) {
+les_clean_raw_data <- function(df, startdate_of_survey, cutoff_date = NULL, min_survey_duration = 3) {
     # convert startdate_of_survey to date
     startdate_of_survey <- as.Date(startdate_of_survey)
 
     df_clean <- df |>
         # remove columns which include only NA values
         select(where(~ !all(is.na(.)))) |>
-        # remove all rows with less than 3 minutes of survey time
+        # remove all rows with less than min_survey_duration minutes of survey time
         mutate(across(c(startdate, datestamp), ~ as.POSIXct(.))) |>
-        filter(datestamp - startdate >= minutes(3)) |>
+        filter(datestamp - startdate >= minutes(min_survey_duration)) |>
         # remove test responses
         filter(!str_detect(tolower(feedback), "test|probe") | is.na(feedback)) |>
         # remove responses before the official start date of the survey
