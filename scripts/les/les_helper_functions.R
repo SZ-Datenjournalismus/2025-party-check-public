@@ -18,13 +18,11 @@ les_clean_raw_data <- function(df, startdate_of_survey, cutoff_date = NULL, min_
     startdate_of_survey <- as.Date(startdate_of_survey)
 
     df_clean <- df |>
-        # remove columns which include only NA values
-        select(where(~ !all(is.na(.)))) |>
+        # remove test responses
+        filter(!str_detect(tolower(feedback), "test|probe") | is.na(feedback)) |>
         # remove all rows with less than min_survey_duration minutes of survey time
         mutate(across(c(startdate, datestamp), ~ as.POSIXct(.))) |>
         filter(datestamp - startdate >= minutes(min_survey_duration)) |>
-        # remove test responses
-        filter(!str_detect(tolower(feedback), "test|probe") | is.na(feedback)) |>
         # remove responses before the official start date of the survey
         filter(as.Date(startdate) >= startdate_of_survey)
 

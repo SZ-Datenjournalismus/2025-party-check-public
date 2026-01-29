@@ -98,7 +98,7 @@ les_metrics <- les_calculate_stats(
   min_n = 5, # adjust minimum n as needed
   expert_choices = expert_choices,
   items_policyfields = items_policyfields,
-  min_completion = 0.01,
+  min_completion = 0.1,
   respondent_id_col = "id"
 )
 
@@ -111,7 +111,7 @@ les_state_federal_diff <- les_compare_state_federal_stats(
   respondent_id_col = "id",
   expert_choices = expert_choices,
   items_policyfields = items_policyfields,
-  min_completion = 0.01
+  min_completion = 0.1
 )
 
 # 6. Output summary of responses ####
@@ -119,6 +119,34 @@ cat("Number of respondents:", n_distinct(les_results_long$id), "\n")
 cat("Items in data:", paste(unique(les_results_long$item), collapse = ", "), "\n")
 cat("Parties in data:", paste(unique(les_results_long$party), collapse = ", "), "\n")
 cat("Regions in data:", paste(unique(les_results_long$region), collapse = ", "), "\n")
+
+# calculate party-region-item combinations missing in les_metrics
+all_party_region_item_combinations <- expand.grid(
+  party = unique(les_results_long$party),
+  region = unique(les_results_long$region),
+  item = unique(les_results_long$item)
+)
+
+missing_combinations <- all_party_region_item_combinations %>%
+  anti_join(
+    les_metrics %>%
+      dplyr::select(party, region, item) %>%
+      distinct(),
+    by = c("party", "region", "item")
+  ) %>%
+  # collapse
+  group_by(party, region) %>%
+  reframe(
+    missing_items = paste(item, collapse = ", "),
+  ) %>%
+  arrange(region, party)
+
+if (nrow(missing_combinations) > 0) {
+  cat("Missing party-region-item combinations in les_metrics:\n")
+  print(missing_combinations)
+} else {
+  cat("No missing party-region-item combinations in les_metrics.\n")
+}
 
 # 7. Small multiple chart: positions per party, item, and region ####
 
