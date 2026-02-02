@@ -69,7 +69,7 @@ expert_choices <- states_experts %>%
 les_results_clean <- les_clean_raw_data(
   df = les_results_raw,
   startdate_of_survey = "2026-01-08",
-  cutoff_date = "2026-02-01",
+  cutoff_date = "2026-02-02",
   min_survey_duration = 2
 )
 
@@ -95,10 +95,10 @@ items_policyfields <- les_results_long %>%
 les_metrics <- les_calculate_stats(
   les_results_long,
   items_list = unique(les_results_long$item),
-  min_n = 5, # adjust minimum n as needed
+  min_n = 4, # adjust minimum n as needed
   expert_choices = expert_choices,
   items_policyfields = items_policyfields,
-  min_completion = 0.1,
+  min_completion = 0.25,
   respondent_id_col = "id"
 )
 
@@ -107,11 +107,11 @@ les_state_federal_diff <- les_compare_state_federal_stats(
   les_results_long,
   regions = c("bw", "rp"),
   items_list = unique(les_results_long$item),
-  min_n = 5, # adjust minimum n as needed
+  min_n = 4, # adjust minimum n as needed
   respondent_id_col = "id",
   expert_choices = expert_choices,
   items_policyfields = items_policyfields,
-  min_completion = 0.1
+  min_completion = 0.25
 )
 
 # 6. Output summary of responses ####
@@ -134,6 +134,8 @@ missing_combinations <- all_party_region_item_combinations %>%
       distinct(),
     by = c("party", "region", "item")
   ) %>%
+  # filter: do not include party fw and item schoolrecom due to too few experts
+  filter(party != "fw", item != "schoolrecom") %>%
   # collapse
   group_by(party, region) %>%
   reframe(
