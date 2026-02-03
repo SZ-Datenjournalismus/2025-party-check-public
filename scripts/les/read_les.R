@@ -69,7 +69,7 @@ expert_choices <- states_experts %>%
 les_results_clean <- les_clean_raw_data(
   df = les_results_raw,
   startdate_of_survey = "2026-01-08",
-  cutoff_date = "2026-02-02",
+  cutoff_date = "2026-02-03",
   min_survey_duration = 2
 )
 
@@ -101,7 +101,31 @@ les_metrics <- les_calculate_stats(
   min_completion = 0.25,
   respondent_id_col = "id"
 )
+#in wide format
+library(tidyr)
 
+les_metrics_wide <- les_metrics %>%
+  rename(bl = region) %>%
+  pivot_wider(
+    names_from = item,
+    values_from = median,
+    id_cols = c(party, bl),
+    values_fill = NA
+  )
+
+html <- paste0(
+  "<table>\n",
+  paste0(
+    "<tr>", paste0("<th>", names(les_metrics_wide), "</th>", collapse = ""), "</tr>\n",
+    apply(les_metrics_wide, 1, function(row)
+      paste0("<tr>", paste0("<td>", row, "</td>", collapse = ""), "</tr>\n")
+    ),
+    collapse = ""
+  ),
+  "</table>\n"
+)
+
+writeLines(html, "les_median_rp_bw_26.html")
 # 5. Calculate comparative metrics between state and federal level ####
 les_state_federal_diff <- les_compare_state_federal_stats(
   les_results_long,
