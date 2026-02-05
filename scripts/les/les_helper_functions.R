@@ -66,7 +66,7 @@ les_wide_to_long <- function(df, regions = c("bund", "bw", "by", "be", "bb", "hb
             values_to = "value",
             values_transform = list(value = as.character)
         ) |>
-        extract(
+        tidyr::extract(
             col = "variable",
             into = c("item", "party", "region"),
             regex = paste0("^([a-z0-9]+)_([a-z]+)", region_regex)
