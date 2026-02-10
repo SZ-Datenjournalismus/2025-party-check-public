@@ -97,6 +97,15 @@ party_check_results_long <- party_check_results_long %>%
         values_from = value
     )
 
+# 5. Add weights ####
+source(here("scripts", "party_check", "party_check_weight_data.R"))
+
+# combine weights with main data, keep only respondents with valid weights
+# w = weight for sociodemographic variables, w_votintland_calc = weight for vote intention
+party_check_results_long <- weights_socdem_df %>%
+    inner_join(weights_votintland_df, by = "id") %>%
+    inner_join(party_check_results_long, by = "id")
+
 # 5. Calculate summary statistics ####
 items_to_calculate <- party_check_results_long %>%
     dplyr::select(item) %>%
@@ -125,5 +134,7 @@ party_check_stats <- calculate_pc_stats(
     items_list = standard_items,
     # sociodemography_list = sociodemographic_vars,
     sociodemography_list = c("votintland_calc", "gender"),
-    min_n = 100
+    min_n = 100,
+    with_weights = TRUE,
+    weight_column = "w"
 )

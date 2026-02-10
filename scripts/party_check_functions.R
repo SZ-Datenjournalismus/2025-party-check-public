@@ -125,13 +125,10 @@ calculate_pc_stats <- function(df, items_list, sociodemography_list, min_n = 1, 
   if (with_weights) {
     # Wenn mit Gewichten gearbeitet wird, die gewichteten Statistiken hinzufügen
     stats_df <- stats_df %>%
-      bind_cols(stats_df_weight_columns %>%
-                  select(
-                    mean_weighted, 
-                    median_weighted, 
-                    lower_ci_weighted, 
-                    upper_ci_weighted
-                  ))
+    left_join(
+      stats_df_weight_columns,
+      by = c("item", sociodemography_list)
+    )
   }
   
   result_df <- stats_df %>%
