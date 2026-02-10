@@ -102,6 +102,8 @@ source(here("scripts", "party_check", "party_check_weight_data.R"))
 
 # combine weights with main data, keep only respondents with valid weights
 # w = weight for sociodemographic variables, w_votintland_calc = weight for vote intention
+# you can remove one or both of the weights if you don't want to use them
+# if you include weights_votintland_calc, all respondents without valid vote intention will be dropped
 party_check_results_long <- weights_socdem_df %>%
     inner_join(weights_votintland_df, by = "id") %>%
     inner_join(party_check_results_long, by = "id")
