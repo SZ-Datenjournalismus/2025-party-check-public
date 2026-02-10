@@ -11,6 +11,7 @@
 #'                   Diese müssen in der Spalte 'item' des Dataframes vorhanden sein.
 #' @param sociodemography_list Ein Vektor mit den Namen der soziodemographischen Variablen, nach denen
 #'                             gruppiert werden soll (z.B. "gender", "age", "education").
+#' @param min_n Numerischer Wert, der angibt, wie viele Antworten mindestens in einer Gruppe vorhanden sein müssen.
 #' @param with_weights Logischer Wert, der angibt, ob die Berechnungen mit Gewichten durchgeführt werden sollen. Default TRUE.
 #'                     Nur möglich, wenn eine Spalte mit Gewichten im Dataframe vorhanden ist.
 #' @param weight_column Der Name der Spalte, die die Gewichte enthält, falls with_weights = TRUE. Default "w".
@@ -35,7 +36,7 @@
 #' #   sociodemography_list = c("gender", "age"),
 #' #   with_weights = TRUE
 #' # )
-calculate_pc_stats <- function(df, items_list, sociodemography_list, with_weights = FALSE, weight_column = "w") {
+calculate_pc_stats <- function(df, items_list, sociodemography_list, min_n = 1, with_weights = FALSE, weight_column = "w") {
   # Überprüfen, ob die erforderlichen Spalten im Dataframe vorhanden sind
   required_cols <- c("item", "value")
   missing_cols <- setdiff(c(required_cols, sociodemography_list), names(df))
@@ -103,6 +104,13 @@ calculate_pc_stats <- function(df, items_list, sociodemography_list, with_weight
         abs(mean - floor(median)) < abs(mean - ceiling(median)) ~ floor(median),
         TRUE ~ ceiling(median)
       ),
+      # Konservativer Median (wie party_check_calculate_stats)
+      median_conservative = case_when(
+        median %% 1 == 0 ~ median,
+        median > 10.5 ~ floor(median),
+        median < 10.5 ~ ceiling(median),
+        TRUE ~ median_integer
+      ),
       # Standardabweichung
       sd = sd(value, na.rm = TRUE),
       # Untere Grenze des 95%-Konfidenzintervalls (2.5%-Quantil)
@@ -111,7 +119,8 @@ calculate_pc_stats <- function(df, items_list, sociodemography_list, with_weight
       upper_ci = quantile(x = value, probs = 0.975, na.rm = TRUE),
       # Anzahl der Beobachtungen in der Gruppe
       n = n()
-    )
+    ) %>%
+    filter(n >= min_n)
   
   if (with_weights) {
     # Wenn mit Gewichten gearbeitet wird, die gewichteten Statistiken hinzufügen
