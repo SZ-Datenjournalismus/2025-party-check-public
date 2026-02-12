@@ -108,7 +108,7 @@ party_check_results_long <- weights_socdem_df %>%
     inner_join(weights_votintland_df, by = "id") %>%
     inner_join(party_check_results_long, by = "id")
 
-# 5. Calculate summary statistics ####
+# 6. Calculate summary statistics ####
 items_to_calculate <- party_check_results_long %>%
     dplyr::select(item) %>%
     distinct() %>%
