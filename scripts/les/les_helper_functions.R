@@ -167,8 +167,19 @@ les_calculate_stats <- function(
         TRUE ~ median_integer
       ),
       sd = sd(value, na.rm = TRUE),
-      lower_ci = quantile(x = value, probs = 0.025, na.rm = TRUE),
-      upper_ci = quantile(x = value, probs = 0.975, na.rm = TRUE),
+      lower_quantile = quantile(x = value, probs = 0.025, na.rm = TRUE),
+      upper_quantile = quantile(x = value, probs = 0.975, na.rm = TRUE),
+      # 95%-Konfidenzintervall des Mittelwerts (t-basiert)
+      lower_ci = if_else(
+        n() >= 5,
+        mean - qt(0.975, df = n() - 1) * (sd / sqrt(n())),
+        NA_real_
+      ),
+      upper_ci = if_else(
+        n() >= 5,
+        mean + qt(0.975, df = n() - 1) * (sd / sqrt(n())),
+        NA_real_
+      ),
       n = n()
     ) %>%
     filter(n >= min_n)
@@ -289,8 +300,19 @@ les_compare_state_federal_stats <- function(
         TRUE ~ median_integer
       ),
       sd = sd(diff, na.rm = TRUE),
-      lower_ci = quantile(diff, probs = 0.025, na.rm = TRUE),
-      upper_ci = quantile(diff, probs = 0.975, na.rm = TRUE),
+      lower_quantile = quantile(diff, probs = 0.025, na.rm = TRUE),
+      upper_quantile = quantile(diff, probs = 0.975, na.rm = TRUE),
+      # 95%-Konfidenzintervall des Mittelwerts der Differenzen (t-basiert)
+      lower_ci = if_else(
+        n() >= 5,
+        mean - qt(0.975, df = n() - 1) * (sd / sqrt(n())),
+        NA_real_
+      ),
+      upper_ci = if_else(
+        n() >= 5,
+        mean + qt(0.975, df = n() - 1) * (sd / sqrt(n())),
+        NA_real_
+      ),
       n = n()
     ) %>%
     ungroup()

@@ -24,8 +24,10 @@
 #'         - mean: Der getrimmte Mittelwert (25% Trimming)
 #'         - median_integer: Ein auf ganze Zahlen gerundeter Median
 #'         - sd: Die Standardabweichung
-#'         - lower_ci: Die untere Grenze des 95%-Konfidenzintervalls
-#'         - upper_ci: Die obere Grenze des 95%-Konfidenzintervalls
+#'         - lower_quantile: Die untere Grenze des 95%-Perzentil-Intervalls
+#'         - upper_quantile: Die obere Grenze des 95%-Perzentil-Intervalls
+#'         - lower_ci: Die untere Grenze des 95%-Konfidenzintervalls des Mittelwerts (t-basiert, NA wenn n<5)
+#'         - upper_ci: Die obere Grenze des 95%-Konfidenzintervalls des Mittelwerts (t-basiert, NA wenn n<5)
 #'         - n: Die Anzahl der Beobachtungen in der Gruppe
 #'
 #' @examples
@@ -81,9 +83,34 @@ calculate_pc_stats <- function(df, items_list, sociodemography_list, min_n = 1, 
         mean_weighted = weighted.mean(x = value, w = !!sym(weight_column), na.rm = TRUE, trim = 0.05),
         # Median der Werte unter Berücksichtigung der Gewichte
         median_weighted = weighted.median(x = value, w = !!sym(weight_column), na.rm = TRUE),
-        # Konfidenzintervall gewichtet
-        lower_ci_weighted = quantile(x = value, probs = 0.025, na.rm = TRUE, weights = !!sym(weight_column)),
-        upper_ci_weighted = quantile(x = value, probs = 0.975, na.rm = TRUE, weights = !!sym(weight_column))
+        # Perzentil-Intervall gewichtet
+        lower_quantile_weighted = quantile(x = value, probs = 0.025, na.rm = TRUE, weights = !!sym(weight_column)),
+        upper_quantile_weighted = quantile(x = value, probs = 0.975, na.rm = TRUE, weights = !!sym(weight_column)),
+        # 95%-Konfidenzintervall des gewichteten Mittelwerts (mit Effektivstichprobe)
+        lower_ci_weighted = if_else(
+          n() >= 5,
+          {
+            w_vals <- !!sym(weight_column)
+            n_eff <- sum(w_vals, na.rm = TRUE)^2 / sum(w_vals^2, na.rm = TRUE)
+            mean_w <- weighted.mean(x = value, w = w_vals, na.rm = TRUE, trim = 0.05)
+            var_w <- sum(w_vals * (value - mean_w)^2, na.rm = TRUE) / sum(w_vals, na.rm = TRUE)
+            se_w <- sqrt(var_w * n_eff / (n_eff - 1)) / sqrt(n_eff)
+            mean_w - qt(0.975, df = pmax(n_eff - 1, 1)) * se_w
+          },
+          NA_real_
+        ),
+        upper_ci_weighted = if_else(
+          n() >= 5,
+          {
+            w_vals <- !!sym(weight_column)
+            n_eff <- sum(w_vals, na.rm = TRUE)^2 / sum(w_vals^2, na.rm = TRUE)
+            mean_w <- weighted.mean(x = value, w = w_vals, na.rm = TRUE, trim = 0.05)
+            var_w <- sum(w_vals * (value - mean_w)^2, na.rm = TRUE) / sum(w_vals, na.rm = TRUE)
+            se_w <- sqrt(var_w * n_eff / (n_eff - 1)) / sqrt(n_eff)
+            mean_w + qt(0.975, df = pmax(n_eff - 1, 1)) * se_w
+          },
+          NA_real_
+        )
       )
   }
   
@@ -113,10 +140,21 @@ calculate_pc_stats <- function(df, items_list, sociodemography_list, min_n = 1, 
       ),
       # Standardabweichung
       sd = sd(value, na.rm = TRUE),
-      # Untere Grenze des 95%-Konfidenzintervalls (2.5%-Quantil)
-      lower_ci = quantile(x = value, probs = 0.025, na.rm = TRUE),
-      # Obere Grenze des 95%-Konfidenzintervalls (97.5%-Quantil)
-      upper_ci = quantile(x = value, probs = 0.975, na.rm = TRUE),
+      # Untere Grenze des 95%-Perzentil-Intervalls (2.5%-Quantil)
+      lower_quantile = quantile(x = value, probs = 0.025, na.rm = TRUE),
+      # Obere Grenze des 95%-Perzentil-Intervalls (97.5%-Quantil)
+      upper_quantile = quantile(x = value, probs = 0.975, na.rm = TRUE),
+      # 95%-Konfidenzintervall des Mittelwerts (t-basiert)
+      lower_ci = if_else(
+        n() >= 5,
+        mean - qt(0.975, df = n() - 1) * (sd(value, na.rm = TRUE) / sqrt(n())),
+        NA_real_
+      ),
+      upper_ci = if_else(
+        n() >= 5,
+        mean + qt(0.975, df = n() - 1) * (sd(value, na.rm = TRUE) / sqrt(n())),
+        NA_real_
+      ),
       # Anzahl der Beobachtungen in der Gruppe
       n = n()
     ) %>%
