@@ -13,3 +13,4 @@ input/ignore/*
 .Rproj.user
 .DS_Store
 .Renviron
+.positai
