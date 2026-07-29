@@ -49,29 +49,57 @@ les_clean_raw_data <- function(df, startdate_of_survey, cutoff_date = NULL, min_
 #' @param df Dataframe in wide format (e.g., output from les_clean_raw_data).
 #' @param regions Vector of regions (default: c("bund", "bw", "by", ...)).
 #'
-#' @return Dataframe in long format with columns item, party, region, value, and all ID columns.
+#' @return Dataframe in long format with columns item, party, region, value, optional certainty, and all ID columns.
 #' @examples
 #' les_wide_to_long(df_clean, regions = c("bund", "bw", "rp"))
 les_wide_to_long <- function(df, regions = c("bund", "bw", "by", "be", "bb", "hb", "hh", "he", "mv", "ni", "nw", "rp", "sl", "sn", "st", "sh", "th")) {
-    # find columns that match the pattern <item>_<party><region>
-    cols_long <- grep("^[a-z0-9]+_[a-z]+[a-z]+$", names(df), value = TRUE)
-    # remove all columns before the first occurence of leftrightgeneral
-    first_item_index <- which(grepl("leftrightgeneral", cols_long))[1]
-    cols_long <- cols_long[first_item_index:length(cols_long)]
-    region_regex <- paste0("(", paste(regions, collapse = "|"), ")$")
-    df_long <- df |>
-        pivot_longer(
-            cols = all_of(cols_long),
-            names_to = "variable",
-            values_to = "value",
-            values_transform = list(value = as.character)
-        ) |>
-        tidyr::extract(
-            col = "variable",
-            into = c("item", "party", "region"),
-            regex = paste0("^([a-z0-9]+)_([a-z]+)", region_regex)
-        )
-    return(df_long)
+  # find columns that match the pattern <item>_<party><region>
+  cols_long <- grep("^[a-z0-9]+_[a-z]+[a-z]+$", names(df), value = TRUE)
+  certainty_cols <- grep("^certainty_", cols_long, value = TRUE)
+  position_cols <- setdiff(cols_long, certainty_cols)
+  # remove all columns before the first occurence of leftrightgeneral
+  first_item_index <- which(grepl("leftrightgeneral", position_cols))[1]
+  if (is.na(first_item_index)) {
+    stop("Keine Positionsitems mit dem Präfix 'leftrightgeneral' gefunden.")
+  }
+  position_cols <- position_cols[first_item_index:length(position_cols)]
+  region_regex <- paste0("(", paste(regions, collapse = "|"), ")$")
+  df_long <- df |>
+    pivot_longer(
+      cols = all_of(position_cols),
+      names_to = "variable",
+      values_to = "value",
+      values_transform = list(value = as.character)
+    ) |>
+    tidyr::extract(
+      col = "variable",
+      into = c("item", "party", "region"),
+      regex = paste0("^([a-z0-9]+)_([a-z]+)", region_regex)
+    )
+
+  # Certainty is a party-region-level assessment, not a substantive position item.
+  # Attach it to all corresponding position items only when such columns exist.
+  if (length(certainty_cols) > 0) {
+    certainty_long <- df |>
+      dplyr::select(id, all_of(certainty_cols)) |>
+      pivot_longer(
+        cols = -id,
+        names_to = "variable",
+        values_to = "certainty",
+        values_transform = list(certainty = as.numeric)
+      ) |>
+      tidyr::extract(
+        col = "variable",
+        into = c("item", "party", "region"),
+        regex = paste0("^([a-z0-9]+)_([a-z]+)", region_regex)
+      ) |>
+      dplyr::select(-item)
+
+    df_long <- df_long |>
+      left_join(certainty_long, by = c("id", "party", "region"), relationship = "many-to-one")
+  }
+
+  return(df_long)
 }
 
 #' Calculates summary statistics for LES long-format data

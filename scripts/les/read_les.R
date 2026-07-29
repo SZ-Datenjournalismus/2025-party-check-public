@@ -16,7 +16,7 @@ source(here("scripts", "les", "les_helper_functions.R"))
 # 1. Load raw data ####
 
 # Important: Adjust the file path to the raw data (csv) in the R syntax file as needed.
-source(here("scripts", "ignore", "les_2026", "survey_814884_R_syntax_file.R"))
+source(here("scripts", "ignore", "les_2026", "survey_149812_R_syntax_file.R"))
 
 # rename raw data
 les_results_raw <- data
@@ -25,7 +25,7 @@ rm(data)
 # Helper function to extract expert choices
 extract_expert_choices <- function(df, prefix, var_name) {
   lgl_col <- paste0(var_name, "_lgl")
-  les_results_raw %>%
+  df %>%
     dplyr::select(id, starts_with(prefix)) %>%
     pivot_longer(!id, names_to = paste0(var_name, "_var"), values_to = var_name) %>%
     distinct() %>%
@@ -39,7 +39,7 @@ extract_expert_choices <- function(df, prefix, var_name) {
 
 # Identify for each expert, which states, parties, and policy fields they chose to evaluate
 states_experts <- extract_expert_choices(les_results_raw, "laender", "state")
-parties_experts <- extract_expert_choices(les_results_raw, "parties1", "party")
+parties_experts <- extract_expert_choices(les_results_raw, "parties", "party") # change parties to parties1 for older surveys
 policyfields_experts <- extract_expert_choices(les_results_raw, "policyfields", "policyfield")
 # add general policy field for each expert
 general_policies <- c("leftrightgeneral", "lrecon", "galtan")
@@ -68,13 +68,13 @@ expert_choices <- states_experts %>%
 # 2. Clean data ####
 les_results_clean <- les_clean_raw_data(
   df = les_results_raw,
-  startdate_of_survey = "2026-01-08",
-  cutoff_date = "2026-02-03",
+  startdate_of_survey = "2026-07-15", # change to the actual start date of the survey
+  cutoff_date = "2026-07-31", # change to the actual cutoff date of the survey, adjust for mv and be
   min_survey_duration = 2
 )
 
 # 3. Convert wide to long format ####
-les_results_long <- les_wide_to_long(les_results_clean, regions = c("bund", "bw", "rp"))
+les_results_long <- les_wide_to_long(les_results_clean, regions = c("bund", "st", "mv", "be")) # change regions as needed
 
 # match items and policy fields
 items_policyfields <- les_results_long %>%
@@ -82,14 +82,27 @@ items_policyfields <- les_results_long %>%
   distinct() %>%
   mutate(policyfield_var = case_when(
     item %in% general_policies ~ "general",
-    item %in% c("childcare", "communityschool", "schoolrecom") ~ "edu",
-    item %in% c("antielitism", "peopledecision") ~ "pop",
+    item %in% c("childcare", "communityschool", "ganztag") ~ "edu",
+    item %in% c("antiestablishment", "peopledecision") ~ "pop",
     item %in% c("genderlanguage", "liberalism", "lawandorder") ~ "soc",
-    item %in% c("assimilation", "immigration", "asylumbenefit") ~ "mig",
-    item %in% c("publicdebt", "rentcontrol", "publicbroadcast") ~ "econ",
-    item %in% c("ukraine", "afdcoop", "stadtbild") ~ "deb",
-    item %in% c("renewenergy", "cars", "climatepolicy") ~ "clim"
+    item %in% c("assimilation", "immigration", "asylum", "refugees") ~ "mig",
+    item %in% c("publicdebt", "housing", "labour", "publicinvest", "climatepolicy") ~ "econ",
+    item %in% c("afdcoop", "dem", "econdef") ~ "deb"
   ))
+# # items_policyfields for bw and rp 2026
+# items_policyfields <- les_results_long %>%
+#   dplyr::select(item) %>%
+#   distinct() %>%
+#   mutate(policyfield_var = case_when(
+#     item %in% general_policies ~ "general",
+#     item %in% c("childcare", "communityschool", "schoolrecom") ~ "edu",
+#     item %in% c("antielitism", "peopledecision") ~ "pop",
+#     item %in% c("genderlanguage", "liberalism", "lawandorder") ~ "soc",
+#     item %in% c("assimilation", "immigration", "asylumbenefit") ~ "mig",
+#     item %in% c("publicdebt", "rentcontrol", "publicbroadcast") ~ "econ",
+#     item %in% c("ukraine", "afdcoop", "stadtbild") ~ "deb",
+#     item %in% c("renewenergy", "cars", "climatepolicy") ~ "clim"
+#   ))
 
 # 4. Calculate general metrics ####
 les_metrics <- les_calculate_stats(
@@ -99,6 +112,7 @@ les_metrics <- les_calculate_stats(
   expert_choices = expert_choices,
   items_policyfields = items_policyfields,
   min_completion = 0.25,
+  min_certainty = 10, # set to NULL to disable the certainty filter
   respondent_id_col = "id"
 )
 #in wide format
@@ -125,11 +139,11 @@ html <- paste0(
   "</table>\n"
 )
 
-writeLines(html, "les_median_rp_bw_26.html")
+writeLines(html, "output/ignore/les_median_st_mv_be_26.html") # change the file name as needed
 # 5. Calculate comparative metrics between state and federal level ####
 les_state_federal_diff <- les_compare_state_federal_stats(
   les_results_long,
-  regions = c("bw", "rp"),
+  regions = c("st", "mv", "be"), # change regions as needed
   items_list = unique(les_results_long$item),
   min_n = 4, # adjust minimum n as needed
   respondent_id_col = "id",
