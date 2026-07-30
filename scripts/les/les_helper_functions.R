@@ -113,6 +113,7 @@ les_wide_to_long <- function(df, regions = c("bund", "bw", "by", "be", "bb", "hb
 #' @param expert_choices Optional: Dataframe with expert choices (id, state, party, policyfield).
 #' @param items_policyfields Optional: Dataframe mapping items to policyfields.
 #' @param min_completion Optional: Minimum share (0-1) of items an expert must have answered (default: NULL = no filter).
+#' @param min_certainty Minimum party-region certainty score to include (default: 10). Ignored if no certainty column exists; NULL disables the filter.
 #' @param respondent_id_col Name of respondent id column (default: "id").
 #'
 #' @return Dataframe with summary statistics for each item/party/region combination.
@@ -121,7 +122,7 @@ les_wide_to_long <- function(df, regions = c("bund", "bw", "by", "be", "bb", "hb
 les_calculate_stats <- function(
   df, items_list, min_n = 1,
   expert_choices = NULL, items_policyfields = NULL, min_completion = NULL,
-  respondent_id_col = "id"
+  min_certainty = 10, respondent_id_col = "id"
 ) {
   required_cols <- c("item", "party", "region", "value", respondent_id_col)
   missing_cols <- setdiff(required_cols, names(df))
@@ -167,6 +168,11 @@ les_calculate_stats <- function(
       
       df <- df %>%
         filter(!(.data[[respondent_id_col]] %in% ids_below))
+  }
+
+  if (!is.null(min_certainty) && "certainty" %in% names(df)) {
+    df <- df %>%
+      filter(!is.na(certainty), certainty >= min_certainty)
   }
 
   selected_df <- df %>% select(item, party, region, value)
